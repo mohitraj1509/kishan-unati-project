@@ -1,0 +1,175 @@
+.header {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.logoText {
+  color: white;
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.navList {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 30px;
+}
+
+.navItem {
+  margin: 0;
+}
+
+.navLink {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 6px;
+}
+
+.navLink:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.authButtons {
+  display: flex;
+  gap: 15px;
+}
+
+.loginBtn,
+.registerBtn {
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.loginBtn {
+  color: #22c55e;
+  background: white;
+  border: 2px solid white;
+}
+
+.loginBtn:hover {
+  background: transparent;
+  color: white;
+}
+
+.registerBtn {
+  color: white;
+  background: transparent;
+  border: 2px solid white;
+}
+
+.registerBtn:hover {
+  background: white;
+  color: #22c55e;
+}
+
+.userMenu {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.dashboardBtn {
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.dashboardBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.logoutBtn {
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.logoutBtn:hover {
+  background: white;
+  color: #22c55e;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+    height: 60px;
+  }
+
+  .logoText {
+    font-size: 1.5rem;
+  }
+
+  .navList {
+    gap: 20px;
+  }
+
+  .navLink {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+
+  .authButtons {
+    gap: 10px;
+  }
+
+  .loginBtn,
+  .registerBtn,
+  .dashboardBtn,
+  .logoutBtn {
+    padding: 6px 16px;
+    font-size: 0.8rem;
+  }
+}

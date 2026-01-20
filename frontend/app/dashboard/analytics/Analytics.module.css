@@ -1,0 +1,540 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fcd34d 100%);
+  padding: 20px;
+}
+
+.header {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #92400e;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.backButton:hover {
+  color: #78350f;
+  transform: translateX(-3px);
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #78350f;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #92400e;
+  margin: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.periodSelector {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.periodBtn {
+  padding: 8px 16px;
+  border: 2px solid #d97706;
+  background: white;
+  border-radius: 20px;
+  font-weight: 600;
+  color: #d97706;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.periodBtn:hover {
+  background: #fef3c7;
+}
+
+.periodBtn.active {
+  background: #d97706;
+  color: white;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(217, 119, 6, 0.2);
+  border-top: 4px solid #d97706;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Metrics Grid */
+.metricsGrid {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.metricCard {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(217, 119, 6, 0.1);
+  transition: all 0.3s ease;
+}
+
+.metricCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.metricIcon {
+  font-size: 3rem;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.metricInfo h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #92400e;
+  margin: 0 0 5px 0;
+}
+
+.metricValue {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #78350f;
+  margin: 0 0 5px 0;
+}
+
+.metricChange {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.metricChange.positive {
+  color: #16a34a;
+}
+
+.metricChange.negative {
+  color: #dc2626;
+}
+
+.metricLabel {
+  font-size: 0.8rem;
+  color: #a16207;
+}
+
+/* Charts Section */
+.chartsSection {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 25px;
+}
+
+.chartCard {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(217, 119, 6, 0.1);
+}
+
+.chartCard h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #78350f;
+  margin: 0 0 20px 0;
+}
+
+.chartPlaceholder {
+  height: 200px;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
+
+.barChart {
+  display: flex;
+  align-items: end;
+  gap: 15px;
+  height: 150px;
+  width: 100%;
+}
+
+.bar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.barFill {
+  width: 100%;
+  background: linear-gradient(135deg, #d97706, #b45309);
+  border-radius: 4px 4px 0 0;
+  min-height: 10px;
+  transition: all 0.3s ease;
+}
+
+.bar:hover .barFill {
+  opacity: 0.8;
+}
+
+.barLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #92400e;
+  text-align: center;
+}
+
+.pieChart {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.pieSlice {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.sliceFill {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.sliceLabel {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 0.9rem;
+  color: #374151;
+  font-weight: 500;
+}
+
+/* Details Section */
+.detailsSection {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 25px;
+}
+
+.detailCard {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(217, 119, 6, 0.1);
+}
+
+.detailCard h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #78350f;
+  margin: 0 0 20px 0;
+}
+
+.cropList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cropItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #fef3c7;
+  border-radius: 12px;
+}
+
+.cropInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cropName {
+  font-weight: 700;
+  color: #78350f;
+}
+
+.cropArea {
+  font-size: 0.8rem;
+  color: #a16207;
+}
+
+.cropYield {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 5px;
+  min-width: 80px;
+}
+
+.yieldValue {
+  font-weight: 700;
+  color: #16a34a;
+}
+
+.yieldBar {
+  width: 60px;
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.yieldFill {
+  height: 100%;
+  background: linear-gradient(90deg, #16a34a, #15803d);
+  border-radius: 3px;
+}
+
+.marketTrends {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.trendItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #fef3c7;
+  border-radius: 12px;
+}
+
+.trendInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.trendCrop {
+  font-weight: 700;
+  color: #78350f;
+}
+
+.trendPrice {
+  font-size: 0.9rem;
+  color: #a16207;
+}
+
+.trendChange {
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+}
+
+.trendChange.positive {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.trendChange.negative {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.demandList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.demandItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #fef3c7;
+  border-radius: 12px;
+}
+
+.demandCrop {
+  font-weight: 700;
+  color: #78350f;
+}
+
+.demandLevel {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.demandLevel.high {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.demandLevel.medium {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.demandLevel.low {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* Recommendations */
+.recommendations {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.recommendations h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #78350f;
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+
+.recommendationGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.recommendationCard {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(217, 119, 6, 0.1);
+  transition: all 0.3s ease;
+}
+
+.recommendationCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.recIcon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.recommendationCard h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #78350f;
+  margin: 0 0 10px 0;
+}
+
+.recommendationCard p {
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .header {
+    margin-bottom: 30px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .periodSelector {
+    flex-wrap: wrap;
+  }
+
+  .metricsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .metricCard {
+    padding: 20px;
+    gap: 15px;
+  }
+
+  .metricIcon {
+    width: 60px;
+    height: 60px;
+    font-size: 2.5rem;
+  }
+
+  .metricValue {
+    font-size: 1.5rem;
+  }
+
+  .chartsSection {
+    grid-template-columns: 1fr;
+  }
+
+  .detailsSection {
+    grid-template-columns: 1fr;
+  }
+
+  .recommendationGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .barChart {
+    gap: 8px;
+  }
+
+  .barLabel {
+    font-size: 0.6rem;
+  }
+}
