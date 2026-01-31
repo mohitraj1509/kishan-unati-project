@@ -1,7 +1,9 @@
 "use client"
 
 import React, { useState, useRef, useEffect } from 'react'
-import ChatbotService, { ChatMessage } from '../lib/chatbotService'
+import ChatbotService, { ChatMessage } from '@/lib/chatbotService'
+
+
 import styles from './Chatbot.module.css'
 
 interface ChatbotProps {
