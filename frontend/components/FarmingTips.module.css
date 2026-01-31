@@ -29,7 +29,7 @@
 }
 
 .title {
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   font-weight: 700;
   color: #1e293b;
   margin-bottom: 1rem;
@@ -37,7 +37,7 @@
 }
 
 .subtitle {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: #64748b;
   max-width: 600px;
   margin: 0 auto;
@@ -102,7 +102,7 @@
 }
 
 .tipTitle {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 600;
   color: #1e293b;
   margin-bottom: 12px;
@@ -113,7 +113,7 @@
 .excerpt {
   color: #64748b;
   line-height: 1.6;
-  font-size: 0.95rem;
+  font-size: 1rem;
   margin-bottom: 20px;
 }
 
@@ -121,16 +121,39 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.listenBtn {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #1e293b;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.listenBtn:hover {
+  background: #e2e8f0;
 }
 
 .readTime {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: #9ca3af;
   font-weight: 500;
 }
 
 .readMore {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -150,11 +173,11 @@
   gap: 10px;
   background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
   color: white;
-  padding: 16px 32px;
+  padding: 18px 36px;
   border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.1rem;
   box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
   transition: all 0.3s ease;
 }

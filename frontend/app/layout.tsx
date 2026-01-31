@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import '../styles/globals.css'
+import { OnboardingProvider } from '@/contexts/OnboardingContext'
+import OnboardingWrapper from '@/components/OnboardingWrapper'
 
 export const metadata: Metadata = {
   title: 'Kisan Unnati',
@@ -13,7 +15,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <OnboardingProvider>
+          <OnboardingWrapper />
+          {children}
+        </OnboardingProvider>
+      </body>
     </html>
   )
 }

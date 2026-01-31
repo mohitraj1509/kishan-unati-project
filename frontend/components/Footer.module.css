@@ -25,8 +25,8 @@
 
 .mainContent {
   display: grid;
-  grid-template-columns: 2fr 3fr;
-  gap: 60px;
+  grid-template-columns: 1.5fr 2fr;
+  gap: 40px;
   margin-bottom: 40px;
 }
 
@@ -46,7 +46,7 @@
   color: #cbd5e1;
   line-height: 1.6;
   margin-bottom: 1.5rem;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
 }
 
 .social {
@@ -105,7 +105,7 @@
 
 .links {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 40px;
 }
 
@@ -133,7 +133,7 @@
 .link {
   color: #cbd5e1;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 1rem;
   transition: all 0.3s ease;
   display: inline-block;
 }

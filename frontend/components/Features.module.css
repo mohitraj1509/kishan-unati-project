@@ -44,12 +44,13 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 30px;
 }
 
 .featureCard {
   background: rgba(255, 255, 255, 0.95);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   padding: 40px 30px;
   border-radius: 20px;
@@ -119,7 +120,7 @@
 }
 
 .featureTitle {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 600;
   color: #1e293b;
   margin-bottom: 15px;
@@ -129,7 +130,7 @@
 .featureDescription {
   color: #64748b;
   line-height: 1.6;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 /* Mobile responsive */

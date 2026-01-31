@@ -1,0 +1,268 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fef3c7 0%, #fcd34d 50%, #fbcd48 100%);
+  padding: 40px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formWrapper {
+  background: white;
+  border-radius: 24px;
+  padding: 40px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.icon {
+  font-size: 3.5rem;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.error {
+  background: #fee2e2;
+  border: 2px solid #ef4444;
+  color: #991b1b;
+  padding: 14px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 1rem;
+}
+
+.label svg {
+  color: #f59e0b;
+}
+
+.input,
+.select {
+  padding: 14px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  color: #1e293b;
+}
+
+.input:focus,
+.select:focus {
+  outline: none;
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1);
+}
+
+.input::placeholder {
+  color: #9ca3af;
+}
+
+.twoColumn {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.passwordWrapper {
+  position: relative;
+  display: flex;
+}
+
+.passwordWrapper .input {
+  width: 100%;
+  padding-right: 44px;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.togglePassword:hover {
+  color: #f59e0b;
+}
+
+.button {
+  padding: 16px;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+}
+
+.button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+}
+
+.button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.divider {
+  text-align: center;
+  color: #9ca3af;
+  font-weight: 600;
+  position: relative;
+  margin: 20px 0;
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #e5e7eb;
+  transform: translateY(50%);
+}
+
+.divider {
+  background: white;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+.secondaryButton {
+  padding: 14px;
+  background: white;
+  color: #f59e0b;
+  border: 2px solid #f59e0b;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  text-align: center;
+  transition: all 0.3s ease;
+  display: block;
+  font-size: 1rem;
+}
+
+.secondaryButton:hover {
+  background: #fef3c7;
+}
+
+.benefits {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 2px solid #f5f5f5;
+}
+
+.benefitsTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 16px;
+}
+
+.benefitsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.benefitsList li {
+  font-size: 1rem;
+  color: #1e293b;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+  .container {
+    padding: 20px 15px;
+  }
+
+  .formWrapper {
+    padding: 28px 20px;
+    border-radius: 18px;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .icon {
+    font-size: 2.8rem;
+  }
+
+  .twoColumn {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .input,
+  .select {
+    padding: 12px 14px;
+    font-size: 16px;
+  }
+
+  .label {
+    font-size: 0.95rem;
+  }
+
+  .button {
+    font-size: 1rem;
+  }
+}

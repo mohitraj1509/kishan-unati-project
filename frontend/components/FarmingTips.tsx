@@ -1,50 +1,63 @@
-import React from 'react';
+'use client'
+
+import React, { useCallback } from 'react';
 import Link from 'next/link';
 import styles from './FarmingTips.module.css';
 
 const FarmingTips = () => {
   const tips = [
     {
-      title: 'Organic Pest Control Methods',
-      excerpt: 'Learn natural ways to protect your crops from pests without harmful chemicals.',
+      title: 'कीट से बचाव (बिना दवा)',
+      excerpt: 'प्राकृतिक तरीके जो फसल को सुरक्षित रखें।',
       image: '🌿',
-      category: 'Pest Control',
+      category: 'कीट नियंत्रण',
       color: '#22c55e',
-      readTime: '5 min read'
+      readTime: '2 मिनट'
     },
     {
-      title: 'Water Conservation Techniques',
-      excerpt: 'Smart irrigation methods to save water and improve crop yield.',
+      title: 'पानी बचाने के तरीके',
+      excerpt: 'कम पानी में अच्छी सिंचाई के आसान उपाय।',
       image: '💧',
-      category: 'Irrigation',
+      category: 'सिंचाई',
       color: '#3b82f6',
-      readTime: '4 min read'
+      readTime: '2 मिनट'
     },
     {
-      title: 'Soil Health Management',
-      excerpt: 'Essential tips for maintaining healthy soil for better crop production.',
+      title: 'मिट्टी कैसे सुधारें',
+      excerpt: 'मिट्टी की ताकत बढ़ाने के सरल उपाय।',
       image: '🌱',
-      category: 'Soil Health',
+      category: 'मिट्टी',
       color: '#8b5cf6',
-      readTime: '6 min read'
+      readTime: '3 मिनट'
     },
     {
-      title: 'Seasonal Crop Planning',
-      excerpt: 'Plan your crops according to seasons for maximum profitability.',
+      title: 'मौसम के अनुसार फसल',
+      excerpt: 'किस मौसम में कौन‑सी फसल लगाएं।',
       image: '📅',
-      category: 'Planning',
+      category: 'प्लानिंग',
       color: '#f59e0b',
-      readTime: '7 min read'
+      readTime: '3 मिनट'
     }
   ];
+
+  const speakTip = useCallback((text: string) => {
+    if (typeof window === 'undefined') return;
+    const synth = window.speechSynthesis;
+    if (!synth) return;
+    synth.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'hi-IN';
+    utterance.rate = 0.9;
+    synth.speak(utterance);
+  }, []);
 
   return (
     <section className={styles.farmingTips}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <h2 className={styles.title}>Farming Tips & Insights</h2>
+          <h2 className={styles.title}>किसान के लिए आसान टिप्स</h2>
           <p className={styles.subtitle}>
-            Expert advice to help you grow better crops and increase your farm's productivity
+            छोटे और आसान सुझाव — रोज़मर्रा के काम में मदद
           </p>
         </div>
 
@@ -62,9 +75,18 @@ const FarmingTips = () => {
                 <p className={styles.excerpt}>{tip.excerpt}</p>
                 <div className={styles.meta}>
                   <span className={styles.readTime}>{tip.readTime}</span>
-                  <Link href="#" className={styles.readMore} style={{ color: tip.color }}>
-                    Read More →
-                  </Link>
+                  <div className={styles.actions}>
+                    <button
+                      type="button"
+                      className={styles.listenBtn}
+                      onClick={() => speakTip(`${tip.title}. ${tip.excerpt}`)}
+                    >
+                      🔊 सुनें
+                    </button>
+                    <Link href="#" className={styles.readMore} style={{ color: tip.color }}>
+                      पूरा पढ़ें →
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -73,7 +95,7 @@ const FarmingTips = () => {
 
         <div className={styles.viewAll}>
           <Link href="/tips" className={styles.viewAllButton}>
-            View All Farming Tips
+            सभी टिप्स देखें
             <span className={styles.arrow}>📚</span>
           </Link>
         </div>

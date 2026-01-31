@@ -1,229 +1,62 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { register } from '../../lib/auth';
-import styles from './Register.module.css';
+import { Users, Store } from 'lucide-react';
+import styles from './roleselection.module.css';
 
-const Register = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    phone: '',
-    location: '',
-    role: 'farmer'
-  });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const router = useRouter();
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
-
-    // Validate passwords match
-    if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
-      setLoading(false);
-      return;
-    }
-
-    // Validate password strength
-    if (formData.password.length < 6) {
-      setError('Password must be at least 6 characters long');
-      setLoading(false);
-      return;
-    }
-
-    try {
-      const result = await register(
-        formData.name,
-        formData.email,
-        formData.password,
-        formData.phone,
-        formData.location,
-        formData.role
-      );
-
-      // Redirect to dashboard
-      router.push('/dashboard');
-    } catch (error) {
-      setError(error instanceof Error ? error.message : 'Registration failed');
-    } finally {
-      setLoading(false);
-    }
-  };
-
+export default function RoleSelection() {
   return (
     <div className={styles.container}>
-      <div className={styles.formCard}>
+      <div className={styles.content}>
         <div className={styles.header}>
-          <h1 className={styles.title}>Join Kisan Unnati</h1>
-          <p className={styles.subtitle}>Create your account to access AI-powered farming tools</p>
+          <h1 className={styles.title}>🌾 Welcome to Kisan Unnati</h1>
+          <p className={styles.subtitle}>Who are you? Choose your role</p>
         </div>
 
-        <form onSubmit={handleSubmit} className={styles.form}>
-          {error && <div className={styles.error}>{error}</div>}
-
-          <div className={styles.row}>
-            <div className={styles.inputGroup}>
-              <label htmlFor="name" className={styles.label}>Full Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className={styles.input}
-                placeholder="Enter your full name"
-                required
-              />
+        <div className={styles.rolesGrid}>
+          {/* Farmer Role */}
+          <Link href="/register/farmer" className={styles.roleCard}>
+            <div className={styles.roleIcon}>
+              <Users size={48} />
             </div>
-
-            <div className={styles.inputGroup}>
-              <label htmlFor="email" className={styles.label}>Email Address</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className={styles.input}
-                placeholder="Enter your email"
-                required
-              />
+            <h2 className={styles.roleTitle}>👨‍🌾 Farmer</h2>
+            <p className={styles.roleDescription}>
+              I am a farmer. I need crop advice, market prices, and other agricultural services.
+            </p>
+            <div className={styles.features}>
+              <span>✅ Crop Advice</span>
+              <span>✅ Disease Detection</span>
+              <span>✅ Market Prices</span>
+              <span>✅ Government Schemes</span>
             </div>
-          </div>
+          </Link>
 
-          <div className={styles.row}>
-            <div className={styles.inputGroup}>
-              <label htmlFor="password" className={styles.label}>Password</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                className={styles.input}
-                placeholder="Create a password"
-                required
-              />
+          {/* Shopkeeper Role */}
+          <Link href="/register/shopkeeper" className={styles.roleCard}>
+            <div className={styles.roleIcon} style={{ color: '#f59e0b' }}>
+              <Store size={48} />
             </div>
-
-            <div className={styles.inputGroup}>
-              <label htmlFor="confirmPassword" className={styles.label}>Confirm Password</label>
-              <input
-                type="password"
-                id="confirmPassword"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                className={styles.input}
-                placeholder="Confirm your password"
-                required
-              />
+            <h2 className={styles.roleTitle}>🏪 Shopkeeper</h2>
+            <p className={styles.roleDescription}>
+              I am an agricultural shopkeeper. I want to share my stock.
+            </p>
+            <div className={styles.features}>
+              <span>✅ Stock Management</span>
+              <span>✅ Reach Farmers</span>
+              <span>✅ Order Tracking</span>
+              <span>✅ Sales Analysis</span>
             </div>
-          </div>
-
-          <div className={styles.row}>
-            <div className={styles.inputGroup}>
-              <label htmlFor="phone" className={styles.label}>Phone Number</label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                className={styles.input}
-                placeholder="Enter your phone number"
-                required
-              />
-            </div>
-
-            <div className={styles.inputGroup}>
-              <label htmlFor="location" className={styles.label}>Location</label>
-              <input
-                type="text"
-                id="location"
-                name="location"
-                value={formData.location}
-                onChange={handleChange}
-                className={styles.input}
-                placeholder="Your city/district"
-                required
-              />
-            </div>
-          </div>
-
-          <div className={styles.inputGroup}>
-            <label htmlFor="role" className={styles.label}>I am a</label>
-            <select
-              id="role"
-              name="role"
-              value={formData.role}
-              onChange={handleChange}
-              className={styles.select}
-            >
-              <option value="farmer">Farmer</option>
-              <option value="agricultural-expert">Agricultural Expert</option>
-              <option value="buyer">Buyer</option>
-            </select>
-          </div>
-
-          <button
-            type="submit"
-            className={styles.submitBtn}
-            disabled={loading}
-          >
-            {loading ? 'Creating Account...' : 'Create Account'}
-          </button>
-        </form>
+          </Link>
+        </div>
 
         <div className={styles.footer}>
-          <p className={styles.footerText}>
-            Already have an account?{' '}
-            <Link href="/login" className={styles.link}>
-              Sign in here
-            </Link>
-          </p>
-        </div>
-      </div>
-
-      <div className={styles.imageSection}>
-        <div className={styles.overlay}>
-          <h2 className={styles.imageTitle}>किसान उन्नति</h2>
-          <p className={styles.imageText}>
-            Join thousands of farmers using AI to maximize their yields
-          </p>
-          <div className={styles.stats}>
-            <div className={styles.stat}>
-              <div className={styles.statNumber}>10K+</div>
-              <div className={styles.statLabel}>Farmers</div>
-            </div>
-            <div className={styles.stat}>
-              <div className={styles.statNumber}>50K+</div>
-              <div className={styles.statLabel}>Acres Managed</div>
-            </div>
-            <div className={styles.stat}>
-              <div className={styles.statNumber}>95%</div>
-              <div className={styles.statLabel}>Success Rate</div>
-            </div>
-          </div>
+          <p className={styles.footerText}>Already have an account?</p>
+          <Link href="/login" className={styles.loginLink}>
+            Log In
+          </Link>
         </div>
       </div>
     </div>
   );
-};
-
-export default Register;
+}

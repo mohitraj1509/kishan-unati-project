@@ -1,0 +1,201 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 50px 40px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.iconWrapper {
+  margin-bottom: 30px;
+  animation: scaleIn 0.6s ease-out 0.2s both;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.successIcon {
+  color: #10b981;
+  filter: drop-shadow(0 4px 10px rgba(16, 185, 129, 0.3));
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #059669;
+  margin-bottom: 30px;
+}
+
+.message {
+  background: #f0fdf4;
+  border-left: 4px solid #10b981;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.message p {
+  font-size: 1.1rem;
+  color: #064e3b;
+  margin: 8px 0;
+  line-height: 1.6;
+}
+
+.benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.benefit {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.05rem;
+  color: #374151;
+}
+
+.benefitIcon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.primaryButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  padding: 16px 30px;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.primaryButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.secondaryButton {
+  display: inline-block;
+  color: #6b7280;
+  padding: 14px 30px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.secondaryButton:hover {
+  border-color: #10b981;
+  color: #10b981;
+  background: #f0fdf4;
+}
+
+.helpText {
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.helpText p {
+  font-size: 1rem;
+  color: #6b7280;
+}
+
+.helpText a {
+  color: #10b981;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.helpText a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .card {
+    padding: 40px 25px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1.3rem;
+  }
+
+  .message p {
+    font-size: 1rem;
+  }
+
+  .benefit {
+    font-size: 1rem;
+  }
+
+  .primaryButton {
+    font-size: 1.1rem;
+    padding: 14px 25px;
+  }
+
+  .secondaryButton {
+    font-size: 1rem;
+    padding: 12px 25px;
+  }
+}

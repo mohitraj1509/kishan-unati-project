@@ -193,9 +193,153 @@ const updateSystemSettings = async (req, res) => {
   }
 };
 
+// @desc    Update user status
+// @route   PATCH /api/admin/users/:id/status
+// @access  Private/Admin
+const updateUserStatus = async (req, res) => {
+  try {
+    const { status } = req.body;
+    const userId = req.params.id;
+
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { status },
+      { new: true, runValidators: true }
+    ).select('-password');
+
+    if (!user) {
+      return sendResponse(res, 404, false, 'User not found');
+    }
+
+    sendResponse(res, 200, true, 'User status updated successfully', { user });
+  } catch (error) {
+    logger.error('Update user status error:', error);
+    sendResponse(res, 500, false, 'Server error');
+  }
+};
+
+// @desc    Get all products for marketplace control
+// @route   GET /api/admin/marketplace/products
+// @access  Private/Admin
+const getMarketplaceProducts = async (req, res) => {
+  try {
+    const products = await Product.find()
+      .populate('farmer', 'name email')
+      .sort({ createdAt: -1 });
+
+    sendResponse(res, 200, true, 'Products retrieved successfully', { products });
+  } catch (error) {
+    logger.error('Get marketplace products error:', error);
+    sendResponse(res, 500, false, 'Server error');
+  }
+};
+
+// @desc    Update product status
+// @route   PATCH /api/admin/marketplace/products/:id
+// @access  Private/Admin
+const updateProductStatus = async (req, res) => {
+  try {
+    const { status } = req.body;
+    const productId = req.params.id;
+
+    const product = await Product.findByIdAndUpdate(
+      productId,
+      { status },
+      { new: true, runValidators: true }
+    );
+
+    if (!product) {
+      return sendResponse(res, 404, false, 'Product not found');
+    }
+
+    sendResponse(res, 200, true, 'Product status updated successfully', { product });
+  } catch (error) {
+    logger.error('Update product status error:', error);
+    sendResponse(res, 500, false, 'Server error');
+  }
+};
+
+// @desc    Get all schemes
+// @route   GET /api/admin/schemes
+// @access  Private/Admin
+const getSchemes = async (req, res) => {
+  try {
+    // Mock schemes data - in production, this would come from a database
+    const schemes = [
+      {
+        _id: '1',
+        title: 'PM-KISAN',
+        description: 'Direct income support of Rs. 6000 per year to all farmer families',
+        category: 'Financial Support',
+        eligibility: 'All farmer families',
+        benefits: 'Rs. 6000 per year in three installments',
+        status: 'active',
+        applicants: 150
+      },
+      {
+        _id: '2',
+        title: 'Soil Health Card',
+        description: 'Provides information on soil health and recommendations',
+        category: 'Soil Management',
+        eligibility: 'All farmers',
+        benefits: 'Free soil testing and recommendations',
+        status: 'active',
+        applicants: 80
+      }
+    ];
+
+    sendResponse(res, 200, true, 'Schemes retrieved successfully', { schemes });
+  } catch (error) {
+    logger.error('Get schemes error:', error);
+    sendResponse(res, 500, false, 'Server error');
+  }
+};
+
+// @desc    Add new scheme
+// @route   POST /api/admin/schemes
+// @access  Private/Admin
+const addScheme = async (req, res) => {
+  try {
+    const schemeData = req.body;
+    // In production, save to database
+    logger.info('New scheme added:', schemeData);
+
+    sendResponse(res, 201, true, 'Scheme added successfully', { scheme: schemeData });
+  } catch (error) {
+    logger.error('Add scheme error:', error);
+    sendResponse(res, 500, false, 'Server error');
+  }
+};
+
+// @desc    Update scheme status
+// @route   PATCH /api/admin/schemes/:id
+// @access  Private/Admin
+const updateSchemeStatus = async (req, res) => {
+  try {
+    const { status } = req.body;
+    const schemeId = req.params.id;
+
+    logger.info('Scheme status updated:', schemeId, status);
+
+    sendResponse(res, 200, true, 'Scheme status updated successfully', { 
+      schemeId, 
+      status 
+    });
+  } catch (error) {
+    logger.error('Update scheme status error:', error);
+    sendResponse(res, 500, false, 'Server error');
+  }
+};
+
 module.exports = {
   getDashboardStats,
   getAllUsers,
   getAllOrders,
-  updateSystemSettings
+  updateSystemSettings,
+  updateUserStatus,
+  getMarketplaceProducts,
+  updateProductStatus,
+  getSchemes,
+  addScheme,
+  updateSchemeStatus
 };

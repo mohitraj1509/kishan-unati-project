@@ -10,54 +10,27 @@ const Footer = () => {
           <div className={styles.brand}>
             <h3 className={styles.logo}>किसान उन्नति</h3>
             <p className={styles.tagline}>
-              Empowering farmers with AI-driven agricultural solutions
+              खेती से जुड़े काम आसान भाषा में, एक ही जगह।
             </p>
-            <div className={styles.social}>
-              <a href="#" className={`${styles.socialLink} ${styles.facebook}`}>📘</a>
-              <a href="#" className={`${styles.socialLink} ${styles.twitter}`}>🐦</a>
-              <a href="#" className={`${styles.socialLink} ${styles.instagram}`}>📷</a>
-              <a href="#" className={`${styles.socialLink} ${styles.linkedin}`}>💼</a>
-            </div>
           </div>
 
           <div className={styles.links}>
             <div className={styles.linkGroup}>
-              <h4 className={styles.groupTitle}>Platform</h4>
+              <h4 className={styles.groupTitle}>जरूरी सेवाएँ</h4>
               <ul className={styles.linkList}>
-                <li><Link href="/dashboard" className={styles.link}>Dashboard</Link></li>
-                <li><Link href="/marketplace" className={styles.link}>Marketplace</Link></li>
-                <li><Link href="/schemes" className={styles.link}>Schemes</Link></li>
-                <li><Link href="/analytics" className={styles.link}>Analytics</Link></li>
+                <li><Link href="/dashboard" className={styles.link}>सेवाएँ</Link></li>
+                <li><Link href="/marketplace" className={styles.link}>मंडी भाव</Link></li>
+                <li><Link href="/schemes" className={styles.link}>सरकारी योजना</Link></li>
+                <li><Link href="/weather" className={styles.link}>मौसम</Link></li>
               </ul>
             </div>
 
             <div className={styles.linkGroup}>
-              <h4 className={styles.groupTitle}>AI Tools</h4>
+              <h4 className={styles.groupTitle}>सहायता</h4>
               <ul className={styles.linkList}>
-                <li><Link href="/crop-recommendation" className={styles.link}>Crop Recommendation</Link></li>
-                <li><Link href="/disease-detection" className={styles.link}>Disease Detection</Link></li>
-                <li><Link href="/weather" className={styles.link}>Weather Insights</Link></li>
-                <li><Link href="/chatbot" className={styles.link}>AI Assistant</Link></li>
-              </ul>
-            </div>
-
-            <div className={styles.linkGroup}>
-              <h4 className={styles.groupTitle}>Support</h4>
-              <ul className={styles.linkList}>
-                <li><Link href="/help" className={styles.link}>Help Center</Link></li>
-                <li><Link href="/contact" className={styles.link}>Contact Us</Link></li>
-                <li><Link href="/faq" className={styles.link}>FAQ</Link></li>
-                <li><Link href="/feedback" className={styles.link}>Feedback</Link></li>
-              </ul>
-            </div>
-
-            <div className={styles.linkGroup}>
-              <h4 className={styles.groupTitle}>Company</h4>
-              <ul className={styles.linkList}>
-                <li><Link href="/about" className={styles.link}>About Us</Link></li>
-                <li><Link href="/careers" className={styles.link}>Careers</Link></li>
-                <li><Link href="/blog" className={styles.link}>Blog</Link></li>
-                <li><Link href="/privacy" className={styles.link}>Privacy Policy</Link></li>
+                <li><Link href="/help" className={styles.link}>मदद</Link></li>
+                <li><Link href="/contact" className={styles.link}>संपर्क करें</Link></li>
+                <li><Link href="/faq" className={styles.link}>प्रश्न</Link></li>
               </ul>
             </div>
           </div>
@@ -68,9 +41,8 @@ const Footer = () => {
             <p>&copy; 2026 Kisan Unnati. All rights reserved.</p>
           </div>
           <div className={styles.bottomLinks}>
-            <Link href="/terms" className={styles.bottomLink}>Terms of Service</Link>
-            <Link href="/privacy" className={styles.bottomLink}>Privacy Policy</Link>
-            <Link href="/cookies" className={styles.bottomLink}>Cookie Policy</Link>
+            <Link href="/terms" className={styles.bottomLink}>नियम</Link>
+            <Link href="/privacy" className={styles.bottomLink}>प्राइवेसी</Link>
           </div>
         </div>
       </div>

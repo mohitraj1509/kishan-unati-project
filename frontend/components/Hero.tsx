@@ -8,20 +8,39 @@ const Hero = () => {
       <div className={styles.container}>
         <div className={styles.content}>
           <h1 className={styles.title}>
-            Empowering Farmers with
-            <span className={styles.highlight}> AI-Driven</span> Solutions
+            Kisan Unnati - Your Farming's
+            <span className={styles.highlight}> Trusted Partner</span>
           </h1>
           <p className={styles.subtitle}>
-            Revolutionize your farming experience with intelligent crop recommendations,
-            disease detection, weather insights, and direct market access.
+            🌾 <strong>Absolutely Free</strong> Crop advice, disease detection, weather and market prices — all in simple language, in one place.
+          </p>
+          <p className={styles.subsubtitle}>
+            ✨ Start using all services now <strong>without creating an account</strong>
+          </p>
+          <p className={styles.helper}>
+            📢 You can also ask by speaking
           </p>
           <div className={styles.buttons}>
-            <Link href="/register" className={styles.primaryBtn}>
-              Get Started
+            <Link href="/voice-assistant" className={styles.primaryBtn}>
+              🎤 Start Now
             </Link>
-            <Link href="/dashboard" className={styles.secondaryBtn}>
-              Explore Dashboard
+            <Link href="/crop-recommendation" className={styles.secondaryBtn}>
+              🌾 Get Crop Suggestions
             </Link>
+          </div>
+          <div className={styles.featuresGrid}>
+            <div className={styles.featureItem}>
+              <span>✓ Without Login</span>
+            </div>
+            <div className={styles.featureItem}>
+              <span>✓ Without Data</span>
+            </div>
+            <div className={styles.featureItem}>
+              <span>✓ Instant Answers</span>
+            </div>
+            <div className={styles.featureItem}>
+              <span>✓ In Multiple Languages</span>
+            </div>
           </div>
         </div>
         <div className={styles.imageContainer}>

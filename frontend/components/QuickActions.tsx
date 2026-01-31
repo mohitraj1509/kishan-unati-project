@@ -6,15 +6,15 @@ const QuickActions = () => {
   const actions = [
     {
       title: 'Check Weather',
-      description: 'Get real-time weather updates',
+      description: 'Today\'s weather',
       icon: '🌤️',
       link: '/dashboard',
       color: '#3b82f6',
       bgColor: '#dbeafe'
     },
     {
-      title: 'Crop Disease Scan',
-      description: 'Upload photo to detect diseases',
+      title: 'Disease Check',
+      description: 'Upload plant photo',
       icon: '🔍',
       link: '/dashboard',
       color: '#ef4444',
@@ -22,15 +22,15 @@ const QuickActions = () => {
     },
     {
       title: 'Market Prices',
-      description: 'Check current crop prices',
+      description: 'Crop prices',
       icon: '📈',
       link: '/dashboard/marketplace',
       color: '#22c55e',
       bgColor: '#dcfce7'
     },
     {
-      title: 'AI Crop Advice',
-      description: 'Get personalized recommendations',
+      title: 'Crop Advice',
+      description: 'Choose right crop',
       icon: '🤖',
       link: '/dashboard',
       color: '#8b5cf6',
@@ -38,19 +38,11 @@ const QuickActions = () => {
     },
     {
       title: 'Government Schemes',
-      description: 'Find eligible schemes & subsidies',
+      description: 'View schemes/subsidies',
       icon: '📋',
       link: '/dashboard',
       color: '#f59e0b',
       bgColor: '#fef3c7'
-    },
-    {
-      title: 'Farm Analytics',
-      description: 'Track your farm performance',
-      icon: '📊',
-      link: '/dashboard',
-      color: '#06b6d4',
-      bgColor: '#cffafe'
     }
   ];
 
@@ -58,9 +50,9 @@ const QuickActions = () => {
     <section className={styles.quickActions}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <h2 className={styles.title}>Quick Actions</h2>
+          <h2 className={styles.title}>Direct Services</h2>
           <p className={styles.subtitle}>
-            Access your most-used farming tools instantly
+            Do important tasks in one click
           </p>
         </div>
 
@@ -85,7 +77,7 @@ const QuickActions = () => {
 
         <div className={styles.ctaSection}>
           <Link href="/register" className={styles.ctaButton}>
-            Start Your Smart Farming Journey
+            Create Your Account
             <span className={styles.ctaIcon}>🚀</span>
           </Link>
         </div>

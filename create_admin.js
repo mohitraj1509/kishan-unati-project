@@ -2,7 +2,7 @@ const http = require('http');
 
 const adminData = JSON.stringify({
   name: 'Admin User',
-  email: 'admin@kisanunnati.com',
+  email: 'admin@kisan.com',
   password: 'admin123',
   phone: '9999999999',
   role: 'admin',
@@ -38,9 +38,13 @@ const req = http.request(options, (res) => {
     console.log('Response:', body);
     if (res.statusCode === 201) {
       console.log('\n✅ Admin user created successfully!');
-      console.log('Email: admin@kisanunnati.com');
+      console.log('Email: admin@kisan.com');
       console.log('Password: admin123');
-      console.log('\nYou can now login to the admin panel at: http://localhost:3002/admin');
+      console.log('\nYou can now login to the admin panel at: http://localhost:3003');
+    } else {
+      console.log('\n⚠️ Note: User may already exist. Try logging in with:');
+      console.log('Email: admin@kisan.com');
+      console.log('Password: admin123');
     }
   });
 });

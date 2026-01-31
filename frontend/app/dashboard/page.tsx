@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { getProfile, updateProfile } from '../../lib/api';
+import Header from '../../components/Header';
 import styles from './Dashboard.module.css';
 
 interface Notification {
@@ -16,6 +17,28 @@ interface Notification {
 interface User {
   name: string;
   role: string;
+  phone?: string;
+  email?: string;
+  location?: {
+    address?: string;
+    district?: string;
+    state?: string;
+    pincode?: string;
+  };
+  farmDetails?: {
+    size?: number | string;
+    soilType?: string;
+    irrigationType?: string;
+    crops?: string[];
+  };
+  preferences?: {
+    language?: string;
+    notifications?: {
+      email?: boolean;
+      sms?: boolean;
+      push?: boolean;
+    };
+  };
 }
 
 const Dashboard = () => {
@@ -176,7 +199,7 @@ const Dashboard = () => {
       setProfileData(prev => ({
         ...prev,
         [parent]: {
-          ...prev[parent as keyof typeof prev],
+          ...((prev[parent as keyof typeof prev] || {}) as object),
           [field]: value
         }
       }));
@@ -331,6 +354,8 @@ const Dashboard = () => {
                       value={profileData.location.district}
                       onChange={(e) => handleNestedChange('location', 'district', e.target.value)}
                       className={styles.input}
+                      placeholder="Enter your district"
+                      title="District"
                     />
                   ) : (
                     <p className={styles.value}>{profileData.location.district || 'Not provided'}</p>
@@ -530,7 +555,9 @@ const Dashboard = () => {
   };
 
   return (
-    <div className={styles.dashboard}>
+    <>
+      <Header />
+      <div className={styles.dashboard}>
       {/* Sidebar */}
       <aside className={styles.sidebar}>
         <div className={styles.sidebarHeader}>
@@ -791,7 +818,8 @@ const Dashboard = () => {
 
         {activeTab === 'profile' && <ProfileSection user={user} />}
       </main>
-    </div>
+      </div>
+    </>
   );
 };
 

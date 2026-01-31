@@ -7,34 +7,141 @@
   right: 0;
   z-index: 1000;
   padding: 0;
+  transition: all 0.3s ease;
+  animation: slideInDown 0.6s ease-out;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header.notLoggedIn {
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+}
+
+.header.loggedIn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 70px;
+  height: 78px;
 }
 
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
+  animation: fadeInLeft 0.6s ease-out;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .logoText {
   color: white;
   text-decoration: none;
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 700;
   letter-spacing: -0.5px;
+  transition: all 0.3s ease;
+}
+
+.logoText:hover {
+  transform: scale(1.05);
 }
 
 .nav {
   display: flex;
   align-items: center;
+  animation: fadeInRight 0.6s ease-out;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.voiceAction {
+  margin: 0 12px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  animation: slideInLeft 0.6s ease-out 0.2s both;
+}
+
+.voiceBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+  height: 40px;
+  white-space: nowrap;
+}
+
+.voiceBtn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.voiceBtn:hover {
+  background: white;
+  color: #22c55e;
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+}
+
+.voiceBtn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.voiceBtn:active {
+  transform: scale(0.95);
 }
 
 .navList {
@@ -42,103 +149,200 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 30px;
+  gap: 16px;
+  animation: slideInLeft 0.6s ease-out 0.3s both;
+  align-items: center;
+  height: 100%;
 }
 
 .navItem {
   margin: 0;
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+.navItem:nth-child(1) {
+  animation-delay: 0.35s;
+}
+
+.navItem:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.navItem:nth-child(3) {
+  animation-delay: 0.45s;
 }
 
 .navLink {
   color: white;
   text-decoration: none;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 0.95rem;
   transition: all 0.3s ease;
-  padding: 8px 16px;
+  padding: 8px 14px;
   border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.8);
+  transition: width 0.3s ease;
 }
 
 .navLink:hover {
   background-color: rgba(255, 255, 255, 0.1);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+}
+
+.navLink:hover::after {
+  width: 100%;
 }
 
 .authButtons {
   display: flex;
-  gap: 15px;
+  gap: 12px;
+  align-items: center;
+  height: 100%;
+  animation: slideInRight 0.6s ease-out 0.4s both;
 }
 
 .loginBtn,
 .registerBtn {
-  padding: 8px 20px;
+  padding: 10px 22px;
   border-radius: 25px;
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.3s ease;
-  font-size: 0.9rem;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.loginBtn::before,
+.registerBtn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
 }
 
 .loginBtn {
-  color: #22c55e;
+  color: #3b82f6;
   background: white;
   border: 2px solid white;
+  animation: fadeInUp 0.6s ease-out 0.45s both;
 }
 
 .loginBtn:hover {
   background: transparent;
   color: white;
+  transform: scale(1.05);
+}
+
+.loginBtn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.loginBtn:active {
+  transform: scale(0.95);
 }
 
 .registerBtn {
   color: white;
   background: transparent;
   border: 2px solid white;
+  animation: fadeInUp 0.6s ease-out 0.5s both;
 }
 
 .registerBtn:hover {
   background: white;
-  color: #22c55e;
+  color: #3b82f6;
+  transform: scale(1.05);
+}
+
+.registerBtn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.registerBtn:active {
+  transform: scale(0.95);
+}
+
+.registerBtn:hover {
+  background: white;
+  color: #3b82f6;
+  transform: scale(1.05);
 }
 
 .userMenu {
   display: flex;
-  gap: 15px;
+  gap: 12px;
+  align-items: center;
+  height: 100%;
   align-items: center;
 }
 
 .dashboardBtn {
-  padding: 8px 20px;
+  padding: 10px 20px;
   border-radius: 25px;
   font-weight: 600;
   text-decoration: none;
   transition: all 0.3s ease;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: white;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  white-space: nowrap;
+  animation: slideInRight 0.6s ease-out 0.4s both;
 }
 
 .dashboardBtn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
 }
 
 .logoutBtn {
-  padding: 8px 20px;
+  padding: 10px 20px;
   border-radius: 25px;
   font-weight: 600;
-  background: transparent;
-  border: 2px solid white;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.4);
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: slideInRight 0.6s ease-out 0.45s both;
 }
 
 .logoutBtn:hover {
-  background: white;
-  color: #22c55e;
+  background: #ef4444;
+  border-color: #ef4444;
+  transform: translateY(-2px);
 }
 
 /* Mobile responsive */
@@ -149,16 +353,22 @@
   }
 
   .logoText {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
   .navList {
-    gap: 20px;
+    gap: 12px;
   }
 
   .navLink {
-    font-size: 0.9rem;
-    padding: 6px 12px;
+    font-size: 0.85rem;
+    padding: 6px 10px;
+  }
+
+  .voiceBtn {
+    font-size: 0.8rem;
+    padding: 8px 14px;
+    height: 36px;
   }
 
   .authButtons {
@@ -169,7 +379,8 @@
   .registerBtn,
   .dashboardBtn,
   .logoutBtn {
-    padding: 6px 16px;
+    padding: 8px 14px;
     font-size: 0.8rem;
+    height: 36px;
   }
 }

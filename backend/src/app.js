@@ -14,6 +14,8 @@ const schemeRoutes = require('./routes/scheme.routes');
 const marketplaceRoutes = require('./routes/marketplace.routes');
 const aiRoutes = require('./routes/ai.routes');
 const adminRoutes = require('./routes/admin.routes');
+const shopkeeperRoutes = require('./routes/shopkeeper');
+const stockRoutes = require('./routes/stock');
 
 const app = express();
 
@@ -71,6 +73,8 @@ app.use('/api/schemes', schemeRoutes);
 app.use('/api/marketplace', marketplaceRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/auth', shopkeeperRoutes);
+app.use('/api/stock', stockRoutes);
 
 // 404 handler
 app.use('*', (req, res) => {
