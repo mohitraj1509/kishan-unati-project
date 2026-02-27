@@ -71,9 +71,72 @@ const getRecommendations = async (req, res) => {
   }
 };
 
+// @desc    Get price prediction
+// @route   GET /api/ai/predict-price
+// @access  Public
+const getPricePrediction = async (req, res) => {
+  try {
+    const { crop, district, arrival_quantity = 1000 } = req.query;
+
+    if (!crop || !district) {
+      return sendResponse(res, 400, false, 'Crop and district parameters are required');
+    }
+
+    const prediction = await aiService.getPricePrediction(crop, district, arrival_quantity);
+
+    sendResponse(res, 200, true, 'Price prediction generated successfully', prediction);
+  } catch (error) {
+    logger.error('Get price prediction error:', error);
+    sendResponse(res, 500, false, 'Failed to generate price prediction');
+  }
+};
+
+// @desc    Get price history
+// @route   GET /api/ai/price-history
+// @access  Public
+const getPriceHistory = async (req, res) => {
+  try {
+    const { crop, district, months = 12 } = req.query;
+
+    if (!crop || !district) {
+      return sendResponse(res, 400, false, 'Crop and district parameters are required');
+    }
+
+    const history = await aiService.getPriceHistory(crop, district, parseInt(months));
+
+    sendResponse(res, 200, true, 'Price history retrieved successfully', history);
+  } catch (error) {
+    logger.error('Get price history error:', error);
+    sendResponse(res, 500, false, 'Failed to get price history');
+  }
+};
+
+// @desc    Get risk assessment
+// @route   GET /api/ai/risk-assessment
+// @access  Public
+const getRiskAssessment = async (req, res) => {
+  try {
+    const { crop, district } = req.query;
+
+    if (!crop || !district) {
+      return sendResponse(res, 400, false, 'Crop and district parameters are required');
+    }
+
+    const assessment = await aiService.getRiskAssessment(crop, district);
+
+    sendResponse(res, 200, true, 'Risk assessment completed successfully', assessment);
+  } catch (error) {
+    logger.error('Get risk assessment error:', error);
+    sendResponse(res, 500, false, 'Failed to get risk assessment');
+  }
+};
+
 module.exports = {
   getCropAdvice,
   analyzeImage,
   getChatResponse,
-  getRecommendations
+  getRecommendations,
+  getPricePrediction,
+  getPriceHistory,
+  getRiskAssessment
 };
