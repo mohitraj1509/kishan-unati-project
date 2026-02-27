@@ -1,0 +1,454 @@
+/* Dark Mode Styles */
+html.dark-mode {
+  color-scheme: dark;
+}
+
+html.dark-mode body {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  color: #e2e8f0;
+}
+
+/* Dark Mode Scrollbar */
+html.dark-mode ::-webkit-scrollbar-track {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+html.dark-mode ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-radius: 8px;
+}
+
+html.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+}
+
+/* Dark Mode Header */
+html.dark-mode [class*="header"] {
+  background: rgba(15, 23, 42, 0.98) !important;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.2) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+html.dark-mode [class*="logoText"] {
+  background: linear-gradient(135deg, #10b981, #34d399) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+html.dark-mode [class*="navLink"] {
+  color: #cbd5e1 !important;
+}
+
+html.dark-mode [class*="navLink"]:hover {
+  color: #10b981 !important;
+  background-color: rgba(16, 185, 129, 0.1) !important;
+}
+
+/* Dark Mode Buttons */
+html.dark-mode [class*="loginBtn"] {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  color: white !important;
+  border-color: #10b981 !important;
+}
+
+html.dark-mode [class*="registerBtn"] {
+  color: #10b981 !important;
+  border-color: #10b981 !important;
+}
+
+html.dark-mode [class*="registerBtn"]:hover {
+  background: #10b981 !important;
+  color: white !important;
+}
+
+html.dark-mode [class*="darkModeBtn"] {
+  background: rgba(16, 185, 129, 0.15) !important;
+  border-color: #10b981 !important;
+  color: #10b981 !important;
+}
+
+/* Dark Mode Text Colors */
+html.dark-mode h1,
+html.dark-mode h2,
+html.dark-mode h3,
+html.dark-mode h4,
+html.dark-mode h5,
+html.dark-mode h6 {
+  color: #f1f5f9;
+}
+
+html.dark-mode p {
+  color: #cbd5e1;
+}
+
+html.dark-mode [class*="hero"] {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%) !important;
+}
+
+html.dark-mode [class*="heroTitle"] {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 50%, #6ee7b7 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+html.dark-mode [class*="heroSubtitle"] {
+  color: #f1f5f9 !important;
+}
+
+html.dark-mode [class*="heroDescription"] {
+  color: #cbd5e1 !important;
+}
+
+html.dark-mode [class*="featureItem"] {
+  color: #d1fae5 !important;
+}
+
+/* Dark Mode Services Section */
+html.dark-mode [class*="servicesSection"] {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
+}
+
+html.dark-mode [class*="serviceCard"] {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+html.dark-mode [class*="serviceCard"]:hover {
+  background: #334155 !important;
+  border-color: #10b981 !important;
+}
+
+html.dark-mode [class*="serviceTitle"] {
+  background: linear-gradient(135deg, #f1f5f9, #10b981) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+html.dark-mode [class*="serviceDesc"] {
+  color: #94a3b8 !important;
+}
+
+/* Dark Mode Social Section */
+html.dark-mode [class*="socialSection"] {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%) !important;
+}
+
+html.dark-mode [class*="socialCard"] {
+  background: rgba(30, 41, 59, 0.95) !important;
+  border-color: #334155 !important;
+}
+
+html.dark-mode [class*="socialCard"]:hover {
+  background: rgba(51, 65, 85, 0.95) !important;
+}
+
+html.dark-mode [class*="socialTitle"] {
+  color: #f1f5f9 !important;
+}
+
+html.dark-mode [class*="socialTime"],
+html.dark-mode [class*="postContent"] {
+  color: #cbd5e1 !important;
+}
+
+html.dark-mode [class*="socialStats"] span {
+  color: #94a3b8 !important;
+}
+
+html.dark-mode [class*="sectionTitle"] {
+  color: #f1f5f9 !important;
+  background: linear-gradient(135deg, #f1f5f9, #10b981) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+html.dark-mode [class*="sectionSubtitle"] {
+  color: #94a3b8 !important;
+}
+
+/* Dark Mode Footer */
+html.dark-mode [class*="footer"] {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%) !important;
+  border-top: 1px solid rgba(16, 185, 129, 0.1);
+}
+
+/* Dark Mode Card Backgrounds */
+html.dark-mode [class*="Card"],
+html.dark-mode [class*="card"] {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+/* Dark Mode Input Fields */
+html.dark-mode input,
+html.dark-mode textarea,
+html.dark-mode select {
+  background: #1e293b;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+html.dark-mode input::placeholder,
+html.dark-mode textarea::placeholder {
+  color: #64748b;
+}
+
+/* Dark Mode Video Container */
+html.dark-mode [class*="videoPlaceholder"] {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(16, 185, 129, 0.15)) !important;
+}
+
+html.dark-mode [class*="videoTitle"] {
+  color: #f1f5f9 !important;
+}
+
+html.dark-mode [class*="videoSubtitle"] {
+  color: rgba(241, 245, 249, 0.8) !important;
+}
+
+/* Dark Mode Selection */
+html.dark-mode ::selection {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.4), rgba(52, 211, 153, 0.3));
+  color: #ffffff;
+}
+
+html.dark-mode ::-moz-selection {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.4), rgba(52, 211, 153, 0.3));
+  color: #ffffff;
+}
+
+/* Dark Mode Testimonials */
+html.dark-mode [class*="testimonialsSection"] {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
+}
+
+/* Dark Mode Nearest Shops */
+html.dark-mode [class*="nearestShops"] {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%) !important;
+}
+
+html.dark-mode [class*="shopCard"] {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+html.dark-mode [class*="shopCard"]:hover {
+  border-color: #10b981 !important;
+  box-shadow: 0 20px 40px rgba(16, 185, 129, 0.2) !important;
+}
+
+html.dark-mode [class*="shopName"],
+html.dark-mode [class*="title"] {
+  color: #f1f5f9 !important;
+}
+
+html.dark-mode [class*="subtitle"],
+html.dark-mode [class*="detailLabel"],
+html.dark-mode [class*="detailValue"],
+html.dark-mode [class*="distance"],
+html.dark-mode [class*="phone"] {
+  color: #cbd5e1 !important;
+}
+
+html.dark-mode [class*="rating"],
+html.dark-mode [class*="detail"] svg {
+  color: #10b981 !important;
+}
+
+html.dark-mode [class*="tag"] {
+  background: rgba(16, 185, 129, 0.1) !important;
+  color: #a7f3d0 !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+html.dark-mode [class*="viewShop"] {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: white !important;
+}
+
+/* Dark Mode Testimonials (component) */
+html.dark-mode [class*="testimonials"] {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%) !important;
+}
+
+html.dark-mode [class*="testimonialCard"] {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+html.dark-mode [class*="testimonialCard"]:hover {
+  border-color: #10b981 !important;
+  box-shadow: 0 20px 40px rgba(16, 185, 129, 0.2) !important;
+}
+
+html.dark-mode [class*="text"],
+html.dark-mode [class*="details"],
+html.dark-mode [class*="name"],
+html.dark-mode [class*="author"] {
+  color: #e2e8f0 !important;
+}
+
+/* Dark Mode Dashboard (app/dashboard) */
+html.dark-mode [class*="dashboard"] {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%) !important;
+}
+
+html.dark-mode [class*="sidebar"] {
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%) !important;
+  border-right: 1px solid rgba(16, 185, 129, 0.15) !important;
+}
+
+html.dark-mode [class*="navItem"] {
+  color: #cbd5e1 !important;
+}
+
+html.dark-mode [class*="navItem"].active,
+html.dark-mode [class*="navItem"]:hover {
+  background: rgba(16, 185, 129, 0.15) !important;
+  color: #f1f5f9 !important;
+  border-left-color: #10b981 !important;
+}
+
+html.dark-mode [class*="dashboardHeader"],
+html.dark-mode [class*="header"] {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%) !important;
+  color: #f1f5f9 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+}
+
+html.dark-mode [class*="statCard"],
+html.dark-mode [class*="card"],
+html.dark-mode [class*="panel"] {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35) !important;
+}
+
+html.dark-mode [class*="statCard"]:hover,
+html.dark-mode [class*="card"]:hover {
+  border-color: #10b981 !important;
+  box-shadow: 0 16px 40px rgba(16, 185, 129, 0.2) !important;
+}
+
+/* Dark Mode Profile / Forms / Auth */
+html.dark-mode [class*="container"] {
+  background: transparent !important;
+}
+
+html.dark-mode [class*="form"],
+html.dark-mode [class*="input"],
+html.dark-mode [class*="select"],
+html.dark-mode [class*="textarea"] {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+  color: #e2e8f0 !important;
+}
+
+html.dark-mode [class*="label"],
+html.dark-mode [class*="subtitle"],
+html.dark-mode [class*="helper"],
+html.dark-mode [class*="hint"] {
+  color: #cbd5e1 !important;
+}
+
+html.dark-mode [class*="button"],
+html.dark-mode [class*="btn"] {
+  border-color: #10b981 !important;
+}
+
+html.dark-mode [class*="primary"],
+html.dark-mode [class*="primaryBtn"] {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  color: white !important;
+}
+
+html.dark-mode [class*="secondary"],
+html.dark-mode [class*="secondaryBtn"] {
+  background: transparent !important;
+  color: #10b981 !important;
+  border-color: #10b981 !important;
+}
+
+html.dark-mode [class*="table"],
+html.dark-mode table {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+  border-color: #334155 !important;
+}
+
+html.dark-mode th,
+html.dark-mode td {
+  border-color: #334155 !important;
+}
+
+/* Dark Mode Register Pages */
+html.dark-mode [class*="container"] {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+}
+
+html.dark-mode [class*="formCard"],
+html.dark-mode [class*="formWrapper"] {
+  background: #1e293b !important;
+  border: 1px solid rgba(16, 185, 129, 0.2) !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4) !important;
+}
+
+html.dark-mode [class*="title"] {
+  color: #f1f5f9 !important;
+}
+
+html.dark-mode [class*="subtitle"],
+html.dark-mode [class*="label"] {
+  color: #cbd5e1 !important;
+}
+
+html.dark-mode [class*="input"],
+html.dark-mode [class*="select"] {
+  background: #0f172a !important;
+  color: #e2e8f0 !important;
+  border-color: #334155 !important;
+}
+
+html.dark-mode [class*="input"]::placeholder {
+  color: #64748b !important;
+}
+
+html.dark-mode [class*="input"]:focus,
+html.dark-mode [class*="select"]:focus {
+  border-color: #10b981 !important;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2) !important;
+}
+
+html.dark-mode [class*="error"] {
+  background: rgba(220, 38, 38, 0.1) !important;
+  color: #fca5a5 !important;
+  border-color: #dc2626 !important;
+}
+
+html.dark-mode [class*="imageSection"] {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+}
+
+html.dark-mode [class*="overlay"],
+html.dark-mode [class*="imageTitle"],
+html.dark-mode [class*="imageText"] {
+  color: white !important;
+}
+
+html.dark-mode [class*="footer"],
+html.dark-mode [class*="divider"] {
+  border-color: #334155 !important;
+}
+
+html.dark-mode [class*="footerText"] {
+  color: #94a3b8 !important;
+}
+

@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Mic, MicOff, Volume2, ChevronRight, ChevronLeft, Check, User, MapPin, Hash, Globe } from 'lucide-react';
+import Link from 'next/link';
+import { Mic, MicOff, Volume2, ChevronRight, ChevronLeft, Check, User, MapPin, Hash, Globe, X, LogIn } from 'lucide-react';
 import styles from './OnboardingModal.module.css';
 
 interface OnboardingData {
@@ -43,18 +44,20 @@ const QUESTIONS = {
     'May I know your good name?',
     'Which state do you belong to?',
     'Which district do you reside in?',
-    'Please share your pincode'
+    'Please share your pincode',
+    'Create an account or log in'
   ],
   hi: [
-    'किसान उन्नति में आपका स्वागत है! 🙏 कृपया अपनी भाषा चुनें',
+    'किसान उन्नति में आपका स्वागत है! कृपया अपनी भाषा चुनें',  
     'कृपया अपना शुभ नाम बताइए',
     'आप किस राज्य से हैं?',
     'आप किस जिले में रहते हैं?',
-    'कृपया अपना पिनकोड बताइए'
+    'कृपया अपना पिनकोड बताइए',
+    'खाता बनाएं या लॉग इन करें'
   ]
 };
 
-const STEP_ICONS = [Globe, User, MapPin, MapPin, Hash];
+const STEP_ICONS = [Globe, User, MapPin, MapPin, Hash, LogIn];
 
 export default function OnboardingModal({ onComplete, onSkip }: OnboardingModalProps) {
   const [step, setStep] = useState(0);
@@ -97,19 +100,22 @@ export default function OnboardingModal({ onComplete, onSkip }: OnboardingModalP
         
         // Update input field in real-time as user speaks
         const currentStep = stepRef.current;
-        if (currentStep === 1) {
-          setData(prev => ({ ...prev, name: transcript }));
-        } else if (currentStep === 3) {
-          setData(prev => ({ ...prev, district: transcript }));
-        } else if (currentStep === 4) {
-          const pincodeMatch = transcript.replace(/\s/g, '').match(/\d{6}/);
-          if (pincodeMatch) {
-            setData(prev => ({ ...prev, pincode: pincodeMatch[0] }));
+        // Only process voice for input steps (not for step 5 which is auth links)
+        if (currentStep < 5) {
+          if (currentStep === 1) {
+            setData(prev => ({ ...prev, name: transcript }));
+          } else if (currentStep === 3) {
+            setData(prev => ({ ...prev, district: transcript }));
+          } else if (currentStep === 4) {
+            const pincodeMatch = transcript.replace(/\s/g, '').match(/\d{6}/);
+            if (pincodeMatch) {
+              setData(prev => ({ ...prev, pincode: pincodeMatch[0] }));
+            }
           }
-        }
-        
-        if (event.results[0].isFinal) {
-          handleVoiceInput(transcript);
+          
+          if (event.results[0].isFinal) {
+            handleVoiceInput(transcript);
+          }
         }
       };
 
@@ -149,16 +155,27 @@ export default function OnboardingModal({ onComplete, onSkip }: OnboardingModalP
       const synth = window.speechSynthesis;
       if (synth) {
         synth.cancel();
-        const questions = data.language === 'hi' ? QUESTIONS.hi : QUESTIONS.en;
-        const utterance = new SpeechSynthesisUtterance(questions[step]);
+        
+        // For step 5, speak the personalized message
+        let textToSpeak = '';
+        if (step === 5) {
+          textToSpeak = data.language === 'hi'
+            ? `नमस्ते ${data.name}! अगर आप Kisan Unnati की ज्यादा सेवाओं का लाभ लेना चाहते हैं, तो अगर पहली बार आ रहे हैं तो रजिस्टर करें, नहीं तो लॉग इन करें।`
+            : `Hello ${data.name}! To enjoy more services of Kisan Unnati, please register if this is your first time, otherwise log in.`;
+        } else {
+          const questions = data.language === 'hi' ? QUESTIONS.hi : QUESTIONS.en;
+          textToSpeak = questions[step];
+        }
+        
+        const utterance = new SpeechSynthesisUtterance(textToSpeak);
         utterance.lang = data.language === 'hi' ? 'hi-IN' : 'en-IN';
         utterance.rate = 0.9;
         
         utterance.onstart = () => setIsSpeaking(true);
         utterance.onend = () => {
           setIsSpeaking(false);
-          // Auto start listening after question (except language selection)
-          if (step > 0 && recognitionRef.current) {
+          // Auto start listening after question (except language selection and step 5)
+          if (step > 0 && step < 5 && recognitionRef.current) {
             setTimeout(() => {
               try {
                 setIsListening(true);
@@ -175,7 +192,7 @@ export default function OnboardingModal({ onComplete, onSkip }: OnboardingModalP
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [step, data.language, hasInteracted]);
+  }, [step, data.language, data.name, hasInteracted]);
 
   // Function to start voice on first interaction
   const handleFirstInteraction = () => {
@@ -281,8 +298,13 @@ export default function OnboardingModal({ onComplete, onSkip }: OnboardingModalP
     const newData = { ...data, ...updates };
     setData(newData);
     setVoiceText('');
+    
+    // Stop listening when moving to next step
+    if (isListening) {
+      stopListening();
+    }
 
-    if (step < 4) {
+    if (step < 5) {
       setStep(step + 1);
       // Question will be spoken automatically by useEffect
     } else {
@@ -295,18 +317,20 @@ export default function OnboardingModal({ onComplete, onSkip }: OnboardingModalP
     if (step > 0) {
       setStep(step - 1);
       setVoiceText('');
+      
+      // Stop listening when going back
+      if (isListening) {
+        stopListening();
+      }
       // Question will be spoken automatically by useEffect
     }
   };
 
   const handleComplete = (finalData: OnboardingData) => {
-    localStorage.setItem('userOnboarded', 'true');
-    localStorage.setItem('userPreferences', JSON.stringify(finalData));
     onComplete(finalData);
   };
 
   const handleSkipClick = () => {
-    localStorage.setItem('userOnboarded', 'true');
     onSkip();
   };
 
@@ -317,6 +341,7 @@ export default function OnboardingModal({ onComplete, onSkip }: OnboardingModalP
       case 2: return !!data.state;
       case 3: return !!data.district.trim();
       case 4: return data.pincode.length === 6;
+      case 5: return true; // Auth buttons always allow proceed
       default: return false;
     }
   };
@@ -354,9 +379,14 @@ export default function OnboardingModal({ onComplete, onSkip }: OnboardingModalP
             <div className={styles.logo}>🌾</div>
             <span className={styles.brandName}>Kisan Unnati</span>
           </div>
-          <button onClick={handleSkipClick} className={styles.skipBtn}>
-            {data.language === 'hi' ? 'छोड़ें' : 'Skip'}
-          </button>
+          <div className={styles.headerActions}>
+            <button onClick={handleSkipClick} className={styles.skipBtn}>
+              {data.language === 'hi' ? 'छोड़ें' : 'Skip'}
+            </button>
+            <button onClick={handleSkipClick} className={styles.closeBtn} aria-label="Close">
+              <X size={16} />
+            </button>
+          </div>
         </div>
 
         {/* Progress Steps */}
@@ -364,11 +394,11 @@ export default function OnboardingModal({ onComplete, onSkip }: OnboardingModalP
           <div className={styles.progressTrack}>
             <div 
               className={styles.progressFill} 
-              style={{ width: `${(step / 4) * 100}%` }}
+              style={{ width: `${(step / 5) * 100}%` }}
             />
           </div>
           <div className={styles.progressSteps}>
-            {[0, 1, 2, 3, 4].map((i) => (
+            {[0, 1, 2, 3, 4, 5].map((i) => (
               <div
                 key={i}
                 className={`${styles.stepDot} ${i < step ? styles.completed : ''} ${i === step ? styles.current : ''}`}
@@ -499,59 +529,88 @@ export default function OnboardingModal({ onComplete, onSkip }: OnboardingModalP
                 </div>
               </div>
             )}
+
+            {step === 5 && (
+              <div className={styles.authCtaSection}>
+                <p className={styles.authCtaText}>
+                  {data.language === 'hi'
+                    ? `नमस्ते ${data.name}! अगर आप Kisan Unnati की ज्यादा सेवाओं का लाभ लेना चाहते हैं, तो अगर पहली बार आ रहे हैं तो रजिस्टर करें, नहीं तो लॉग इन करें।`
+                    : `Hello ${data.name}! To enjoy more services of Kisan Unnati, please register if this is your first time, otherwise log in.`}
+                </p>
+                <div className={styles.authButtons}>
+                  <Link href="/login" className={styles.loginLink} onClick={handleSkipClick}>
+                    {data.language === 'hi' ? 'लॉग इन' : 'Login'}
+                  </Link>
+                  <Link href="/register" className={styles.registerLink} onClick={handleSkipClick}>
+                    {data.language === 'hi' ? 'खाता बनाएं' : 'Register'}
+                  </Link>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Voice controls - Farmer Friendly */}
-          <div className={styles.voiceSection}>
-            <p className={styles.voiceHint}>
-              {data.language === 'hi' ? '🎤 बोलकर भी जवाब दें' : '🎤 Or speak your answer'}
-            </p>
-            <div className={styles.voiceControls}>
-              <button
-                onClick={() => speakQuestion(step)}
-                className={styles.speakerBtn}
-                disabled={isSpeaking}
-                title={data.language === 'hi' ? 'सवाल सुनें' : 'Hear question'}
-              >
-                <Volume2 size={22} />
-                <span>{data.language === 'hi' ? 'सुनें' : 'Listen'}</span>
-              </button>
-              <button
-                onClick={isListening ? stopListening : startListening}
-                className={`${styles.micBtn} ${isListening ? styles.listening : ''}`}
-                disabled={isSpeaking}
-              >
-                {isListening ? <MicOff size={28} /> : <Mic size={28} />}
-              </button>
-              <div className={styles.micLabel}>
-                {isListening 
-                  ? (data.language === 'hi' ? 'सुन रहा हूं...' : 'Listening...')
-                  : (data.language === 'hi' ? 'बोलें' : 'Speak')
-                }
+          {step < 5 && (
+            <div className={styles.voiceSection}>
+              <p className={styles.voiceHint}>
+                {data.language === 'hi' ? '🎤 बोलकर भी जवाब दें' : '🎤 Or speak your answer'}
+              </p>
+              <div className={styles.voiceControls}>
+                <button
+                  onClick={() => speakQuestion(step)}
+                  className={styles.speakerBtn}
+                  disabled={isSpeaking}
+                  title={data.language === 'hi' ? 'सवाल सुनें' : 'Hear question'}
+                >
+                  <Volume2 size={22} />
+                  <span>{data.language === 'hi' ? 'सुनें' : 'Listen'}</span>
+                </button>
+                <button
+                  onClick={isListening ? stopListening : startListening}
+                  className={`${styles.micBtn} ${isListening ? styles.listening : ''}`}
+                  disabled={isSpeaking}
+                >
+                  {isListening ? <MicOff size={28} /> : <Mic size={28} />}
+                </button>
+                <div className={styles.micLabel}>
+                  {isListening 
+                    ? (data.language === 'hi' ? 'सुन रहा हूं...' : 'Listening...')
+                    : (data.language === 'hi' ? 'बोलें' : 'Speak')
+                  }
+                </div>
               </div>
             </div>
-          </div>
+          )}
 
           {/* Navigation */}
-          <div className={styles.actions}>
-            {step > 0 && (
+          {step < 5 ? (
+            <div className={styles.actions}>
+              {step > 0 && (
+                <button onClick={handleBack} className={styles.backBtn}>
+                  <ChevronLeft size={20} />
+                  {data.language === 'hi' ? 'पीछे' : 'Back'}
+                </button>
+              )}
+              <button
+                onClick={() => canProceed() && handleNext()}
+                className={`${styles.nextBtn} ${!canProceed() ? styles.disabled : ''}`}
+                disabled={!canProceed()}
+              >
+                {step === 4 
+                  ? (data.language === 'hi' ? 'आगे बढ़ें' : 'Continue')
+                  : (data.language === 'hi' ? 'आगे बढ़ें' : 'Continue')
+                }
+                <ChevronRight size={20} />
+              </button>
+            </div>
+          ) : (
+            <div className={styles.actions}>
               <button onClick={handleBack} className={styles.backBtn}>
                 <ChevronLeft size={20} />
                 {data.language === 'hi' ? 'पीछे' : 'Back'}
               </button>
-            )}
-            <button
-              onClick={() => canProceed() && handleNext()}
-              className={`${styles.nextBtn} ${!canProceed() ? styles.disabled : ''}`}
-              disabled={!canProceed()}
-            >
-              {step === 4 
-                ? (data.language === 'hi' ? 'शुरू करें' : 'Get Started')
-                : (data.language === 'hi' ? 'आगे बढ़ें' : 'Continue')
-              }
-              <ChevronRight size={20} />
-            </button>
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

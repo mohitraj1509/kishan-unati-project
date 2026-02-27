@@ -34,6 +34,12 @@
   letter-spacing: -0.02em;
 }
 
+@media (max-width: 640px) {
+  .title {
+    font-size: 1.8rem;
+  }
+}
+
 .subtitle {
   font-size: 1.1rem;
   color: #64748b;
@@ -48,6 +54,20 @@
   gap: 30px;
 }
 
+@media (max-width: 968px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
 .featureCard {
   background: rgba(255, 255, 255, 0.95);
   -webkit-backdrop-filter: blur(10px);
@@ -60,6 +80,13 @@
   background-clip: padding-box;
   position: relative;
   overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .featureCard {
+    padding: 25px 20px;
+    border-radius: 16px;
+  }
 }
 
 .featureCard:nth-child(1) {

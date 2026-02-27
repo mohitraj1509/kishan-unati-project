@@ -40,6 +40,20 @@
   align-items: center;
 }
 
+@media (max-width: 968px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px;
+    gap: 30px;
+  }
+}
+
 .content {
   z-index: 2;
   animation: slideInLeft 0.8s ease-out;
@@ -53,6 +67,19 @@
   margin-bottom: 1.5rem;
   letter-spacing: -0.02em;
   animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+@media (max-width: 968px) {
+  .title {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
 }
 
 .highlight {
@@ -89,6 +116,19 @@
   margin-bottom: 1rem;
   max-width: 500px;
   animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+@media (max-width: 968px) {
+  .subtitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
 }
 
 .subsubtitle {

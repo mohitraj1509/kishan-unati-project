@@ -1,0 +1,260 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding-top: 80px;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: #1e293b;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #64748b;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.searchBox {
+  display: flex;
+  gap: 12px;
+  max-width: 600px;
+  margin: 0 auto 60px;
+}
+
+.searchInput {
+  flex: 1;
+  padding: 15px 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #10b981;
+}
+
+.searchBtn {
+  padding: 15px 30px;
+  background: #10b981;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.searchBtn:hover {
+  background: #059669;
+  transform: translateY(-2px);
+}
+
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.section {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.sectionTitle {
+  font-size: 1.8rem;
+  color: #1e293b;
+  margin-bottom: 30px;
+}
+
+.topicGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.topicCard {
+  background: #f8fafc;
+  padding: 30px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.topicCard:hover {
+  transform: translateY(-5px);
+  border-color: #10b981;
+  box-shadow: 0 8px 16px rgba(16, 185, 129, 0.15);
+}
+
+.topicIcon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.topicCard h3 {
+  font-size: 1.3rem;
+  color: #1e293b;
+  margin-bottom: 10px;
+}
+
+.topicCard p {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.contactCard {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  color: white;
+}
+
+.contactIcon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.contactCard h3 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+.contactInfo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.contactTime {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.faqItem {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.faqItem:hover {
+  background: #f1f5f9;
+}
+
+.faqQuestion {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1e293b;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.faqQuestion::-webkit-details-marker {
+  display: none;
+}
+
+.faqQuestion::after {
+  content: '+';
+  font-size: 1.5rem;
+  color: #10b981;
+}
+
+.faqItem[open] .faqQuestion::after {
+  content: '−';
+}
+
+.faqAnswer {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 2px solid #e2e8f0;
+  color: #475569;
+  line-height: 1.8;
+}
+
+.faqAnswer p {
+  margin-bottom: 10px;
+}
+
+.ctaSection {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  padding: 60px 40px;
+  border-radius: 16px;
+  text-align: center;
+  color: white;
+}
+
+.ctaSection h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.ctaSection p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+.ctaBtn {
+  display: inline-block;
+  padding: 15px 40px;
+  background: white;
+  color: #10b981;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.ctaBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .section {
+    padding: 25px;
+  }
+
+  .topicGrid,
+  .contactGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { MapPin, Phone, Clock, Star, Package, ShoppingCart, Share2, Image, Video } from 'lucide-react';
+import Header from '../../../components/Header';
 import styles from './shop.module.css';
 
 interface Product {
@@ -123,6 +124,7 @@ export default function ShopDetail() {
 
   return (
     <div className={styles.container}>
+      <Header />
       {/* Shop Header */}
       <div className={styles.header}>
         <div className={styles.shopHeader}>

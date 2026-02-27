@@ -1,15 +1,19 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: linear-gradient(135deg, rgba(46, 125, 50, 0.95) 0%, rgba(27, 94, 32, 0.98) 100%);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  background: rgba(15, 23, 42, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
   padding: 1rem;
   animation: fadeIn 0.4s ease;
+}
+
+@media (max-width: 640px) {
+  .overlay {
+    padding: 0.5rem;
+  }
 }
 
 @keyframes fadeIn {
@@ -20,12 +24,28 @@
 .modal {
   background: #ffffff;
   border-radius: 24px;
-  max-width: 480px;
+  max-width: 620px;
   width: 100%;
-  max-height: 90vh;
+  max-height: 92vh;
   overflow-y: auto;
+  color: #1f2937;
   box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
   animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 768px) {
+  .modal {
+    max-width: 95vw;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .modal {
+    max-width: 100%;
+    max-height: 95vh;
+    border-radius: 16px;
+  }
 }
 
 @keyframes slideUp {
@@ -48,20 +68,44 @@
   border-bottom: 1px solid #f0f0f0;
 }
 
+@media (max-width: 640px) {
+  .header {
+    padding: 1rem 1.25rem;
+  }
+}
+
 .logoSection {
   display: flex;
   align-items: center;
   gap: 0.75rem;
 }
 
+@media (max-width: 640px) {
+  .logoSection {
+    gap: 0.5rem;
+  }
+}
+
 .logo {
-  font-size: 2rem;
+  font-size: 1.6rem;
+}
+
+@media (max-width: 640px) {
+  .logo {
+    font-size: 1.5rem;
+  }
 }
 
 .brandName {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: #2e7d32;
+}
+
+@media (max-width: 640px) {
+  .brandName {
+    font-size: 1.05rem;
+  }
 }
 
 .skipBtn {
@@ -77,6 +121,31 @@
 }
 
 .skipBtn:hover {
+  background: #f5f5f5;
+  border-color: #ccc;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.closeBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid #e0e0e0;
+  background: #ffffff;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.closeBtn:hover {
   background: #f5f5f5;
   border-color: #ccc;
 }
@@ -135,6 +204,7 @@
 /* Content */
 .content {
   padding: 1.5rem;
+  color: #1f2937;
 }
 
 .questionSection {
@@ -155,7 +225,7 @@
 }
 
 .question {
-  font-size: 1.35rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: #1b5e20;
   line-height: 1.5;
@@ -173,7 +243,7 @@
   color: white;
   border: none;
   border-radius: 25px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -229,7 +299,7 @@
 }
 
 .voiceTranscript {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #e65100;
   font-weight: 500;
   margin: 0;
@@ -284,7 +354,7 @@
 }
 
 .langNative {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #2c3e50;
 }
@@ -333,7 +403,7 @@
   padding: 1rem 1rem 1rem 3rem;
   border: 2px solid #e8f5e9;
   border-radius: 14px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   transition: all 0.3s ease;
   background: #fafafa;
   font-family: inherit;
@@ -379,7 +449,7 @@
 }
 
 .voiceHint {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: #1976D2;
   margin: 0 0 1rem;
   font-weight: 500;
@@ -402,7 +472,7 @@
   border-radius: 25px;
   color: #1976D2;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -454,7 +524,7 @@
 }
 
 .micLabel {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: #2e7d32;
   font-weight: 600;
   min-width: 80px;
@@ -467,6 +537,62 @@
   justify-content: center;
 }
 
+.authCta {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #eef2f7;
+  text-align: center;
+}
+
+.authText {
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin: 0 0 0.75rem;
+}
+
+.authButtons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.loginLink,
+.registerLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.loginLink {
+  border: 1px solid #d1d5db;
+  color: #374151;
+  background: #ffffff;
+}
+
+.loginLink:hover {
+  background: #f9fafb;
+  border-color: #cbd5f5;
+}
+
+.registerLink {
+  border: 1px solid #4CAF50;
+  color: #ffffff;
+  background: linear-gradient(135deg, #4CAF50, #2e7d32);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.25);
+}
+
+.registerLink:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(76, 175, 80, 0.35);
+}
+
 .backBtn {
   display: flex;
   align-items: center;
@@ -475,7 +601,7 @@
   background: white;
   border: 2px solid #e0e0e0;
   border-radius: 14px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: #666;
   cursor: pointer;
@@ -499,7 +625,7 @@
   color: white;
   border: none;
   border-radius: 14px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -556,15 +682,44 @@
 }
 
 .successTitle {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   color: #2e7d32;
   margin: 0 0 0.5rem;
 }
 
 .successText {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #666;
   margin: 0;
+}
+
+/* Dedicated auth CTA section for step 5 */
+.authCtaSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.authCtaText {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #374151;
+  margin: 0;
+  max-width: 300px;
+}
+
+/* Force light styling inside onboarding even when dark mode is enabled */
+:global(html.dark-mode) .modal {
+  background: #ffffff !important;
+  color: #1b5e20;
+}
+
+:global(html.dark-mode) .header {
+  background: #ffffff !important;
+  border-bottom: 1px solid #f0f0f0 !important;
 }
 
 /* Responsive */

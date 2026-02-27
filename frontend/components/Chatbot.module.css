@@ -21,6 +21,23 @@
   backdrop-filter: blur(10px);
 }
 
+@media (max-width: 768px) {
+  .chatbotContainer {
+    width: 340px;
+    height: 550px;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .chatbotContainer {
+    width: calc(100vw - 40px);
+    height: 70vh;
+    max-height: 500px;
+    border-radius: 16px;
+  }
+}
+
 /* Header */
 .chatbotHeader {
   background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);

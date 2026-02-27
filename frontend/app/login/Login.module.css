@@ -5,6 +5,12 @@
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
 }
 
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
+
 .formCard {
   display: flex;
   flex-direction: column;
@@ -17,9 +23,32 @@
   width: 100%;
 }
 
+@media (max-width: 768px) {
+  .formCard {
+    border-radius: 0;
+    box-shadow: none;
+    padding: 30px 20px;
+    justify-content: flex-start;
+    padding-top: 100px;
+  }
+}
+
+@media (max-width: 640px) {
+  .formCard {
+    padding: 20px 16px;
+    padding-top: 80px;
+  }
+}
+
 .header {
   text-align: center;
   margin-bottom: 40px;
+}
+
+@media (max-width: 640px) {
+  .header {
+    margin-bottom: 30px;
+  }
 }
 
 .title {
@@ -42,6 +71,13 @@
   grid-template-columns: 1fr 1fr;
   gap: 12px;
   margin-bottom: 30px;
+}
+
+@media (max-width: 640px) {
+  .roleSelector {
+    gap: 10px;
+    margin-bottom: 24px;
+  }
 }
 
 .roleBtn {

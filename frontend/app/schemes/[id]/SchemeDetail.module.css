@@ -43,6 +43,19 @@
   gap: 20px;
 }
 
+@media (max-width: 768px) {
+  .schemeHeader {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .schemeHeader {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
 .schemeIcon {
   font-size: 3rem;
   background: linear-gradient(135deg, #22c55e, #16a34a);
@@ -56,6 +69,24 @@
   flex-shrink: 0;
 }
 
+@media (max-width: 768px) {
+  .schemeIcon {
+    font-size: 2.4rem;
+    width: 70px;
+    height: 70px;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .schemeIcon {
+    font-size: 2rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+  }
+}
+
 .schemeInfo {
   flex: 1;
 }
@@ -66,6 +97,18 @@
   color: #1f2937;
   margin: 0 0 10px 0;
   line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  .schemeTitle {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .schemeTitle {
+    font-size: 1.5rem;
+  }
 }
 
 .schemeMeta {

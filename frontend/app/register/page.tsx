@@ -3,11 +3,14 @@
 import React from 'react';
 import Link from 'next/link';
 import { Users, Store } from 'lucide-react';
+import Header from '../../components/Header';
 import styles from './roleselection.module.css';
 
 export default function RoleSelection() {
   return (
-    <div className={styles.container}>
+    <>
+      <Header />
+      <div className={styles.container}>
       <div className={styles.content}>
         <div className={styles.header}>
           <h1 className={styles.title}>🌾 Welcome to Kisan Unnati</h1>
@@ -58,5 +61,6 @@ export default function RoleSelection() {
         </div>
       </div>
     </div>
+    </>
   );
 }

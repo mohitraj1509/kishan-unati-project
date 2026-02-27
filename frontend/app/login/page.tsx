@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
+import Header from '../../components/Header';
 import styles from './Login.module.css';
 
 const Login = () => {
@@ -80,23 +81,17 @@ const Login = () => {
           farmSize: user.farmSize || '0'
         }));
 
-        console.log('Login successful:', { token, user });
-
         // Dispatch auth change event to update Header
         if (typeof window !== 'undefined') {
           window.dispatchEvent(new CustomEvent('auth-change'));
         }
 
-        // Redirect after a short delay
-        setTimeout(() => {
-          if (role === 'shopkeeper') {
-            router.push('/shopkeeper/dashboard');
-          } else {
-            // Redirect to home
-            router.refresh();
-            router.push('/');
-          }
-        }, 300);
+        // Redirect to the correct dashboard
+        if (role === 'shopkeeper') {
+          router.push('/shopkeeper/dashboard');
+        } else {
+          router.push('/dashboard');
+        }
       } else {
         setError(data.message || 'लॉगिन विफल रहा');
         console.error('Login error:', data);
@@ -110,8 +105,10 @@ const Login = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.formCard}>
+    <>
+      <Header />
+      <div className={styles.container}>
+        <div className={styles.formCard}>
         <div className={styles.header}>
           <h1 className={styles.title}>🌾 किसान उन्नति</h1>
           <p className={styles.subtitle}>अपने खाते में लॉग इन करें</p>
@@ -196,6 +193,7 @@ const Login = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

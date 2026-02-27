@@ -4,6 +4,12 @@
   position: relative;
 }
 
+@media (max-width: 640px) {
+  .testimonials {
+    padding: 60px 0;
+  }
+}
+
 .testimonials::before {
   content: '';
   position: absolute;
@@ -50,6 +56,20 @@
   gap: 30px;
 }
 
+@media (max-width: 968px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
 .testimonialCard {
   background: white;
   padding: 40px 30px;
@@ -58,6 +78,13 @@
   position: relative;
   transition: all 0.3s ease;
   border: 1px solid rgba(245, 158, 11, 0.1);
+}
+
+@media (max-width: 640px) {
+  .testimonialCard {
+    padding: 25px 20px;
+    border-radius: 16px;
+  }
 }
 
 .testimonialCard:hover {

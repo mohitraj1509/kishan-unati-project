@@ -35,6 +35,18 @@
   letter-spacing: -0.02em;
 }
 
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: 1.6rem;
+  }
+}
+
 .subtitle {
   font-size: 1.1rem;
   color: #92400e;
@@ -50,6 +62,13 @@
   margin-top: 20px;
 }
 
+@media (max-width: 640px) {
+  .periodSelector {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
 .periodBtn {
   padding: 8px 16px;
   border: 2px solid #d97706;
@@ -59,6 +78,13 @@
   color: #d97706;
   cursor: pointer;
   transition: all 0.3s ease;
+}
+
+@media (max-width: 640px) {
+  .periodBtn {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
 }
 
 .periodBtn:hover {

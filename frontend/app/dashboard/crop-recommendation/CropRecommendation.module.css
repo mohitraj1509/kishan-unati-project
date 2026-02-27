@@ -35,6 +35,18 @@
   letter-spacing: -0.02em;
 }
 
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: 1.6rem;
+  }
+}
+
 .subtitle {
   font-size: 1.1rem;
   color: #64748b;
@@ -51,6 +63,19 @@
   gap: 40px;
 }
 
+@media (max-width: 968px) {
+  .content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 640px) {
+  .content {
+    gap: 20px;
+  }
+}
+
 /* Form Section */
 .formSection {
   display: flex;
@@ -63,6 +88,20 @@
   padding: 40px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(34, 197, 94, 0.1);
+}
+
+@media (max-width: 768px) {
+  .formCard {
+    padding: 30px;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .formCard {
+    padding: 20px;
+    border-radius: 12px;
+  }
 }
 
 .formCard h2 {

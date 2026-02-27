@@ -16,7 +16,7 @@ const generateToken = (id) => {
 // @access  Public
 const register = async (req, res) => {
   try {
-    const { name, email, password, phone, location, role } = req.body;
+    const { name, email, password, phone, location, role, district, state, pincode } = req.body;
 
     // Check if user exists (convert email to lowercase)
     const userExists = await User.findOne({ email: email.toLowerCase() });
@@ -25,16 +25,26 @@ const register = async (req, res) => {
     }
 
     // Create user (password will be hashed by pre-save hook)
+    const locationData =
+      location && typeof location === 'object'
+        ? location
+        : {
+            address: location || '',
+            district: district || '',
+            state: state || '',
+            pincode: pincode || ''
+          };
+
     const user = await User.create({
       name,
       email,
       password, // Plain password, will be hashed by model
       phone,
       location: {
-        address: location?.address || '',
-        district: location?.district || '',
-        state: location?.state || '',
-        pincode: location?.pincode || '',
+        address: locationData.address || '',
+        district: locationData.district || '',
+        state: locationData.state || '',
+        pincode: locationData.pincode || '',
         coordinates: [0, 0] // Default coordinates, can be updated later
       },
       role: role || 'farmer'
@@ -53,6 +63,9 @@ const register = async (req, res) => {
     });
   } catch (error) {
     logger.error('Register error:', error);
+    if (error?.name === 'ValidationError') {
+      return sendResponse(res, 400, false, error.message);
+    }
     sendResponse(res, 500, false, 'Server error');
   }
 };

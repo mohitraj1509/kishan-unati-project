@@ -1,12 +1,15 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { useOnboarding } from '@/contexts/OnboardingContext';
 import OnboardingModal from './OnboardingModal';
 
 export default function OnboardingWrapper() {
+  const pathname = usePathname();
   const { showOnboarding, completeOnboarding, skipOnboarding } = useOnboarding();
 
-  if (!showOnboarding) return null;
+  // Only show onboarding on home page
+  if (pathname !== '/' || !showOnboarding) return null;
 
   return (
     <OnboardingModal 

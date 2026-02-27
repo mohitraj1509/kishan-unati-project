@@ -1,9 +1,10 @@
-'use client'
+'use client';
 
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Eye, EyeOff, Store, Phone, MapPin, User } from 'lucide-react';
+import { Eye, EyeOff, Store, Phone, MapPin, User, Lock, CheckCircle2, MapPinned } from 'lucide-react';
+import Header from '../../../components/Header';
 import styles from './shopkeeper.module.css';
 
 export default function ShopkeeperRegister() {
@@ -25,9 +26,13 @@ export default function ShopkeeperRegister() {
   const [error, setError] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    const nextValue =
+      name === 'phone' ? value.replace(/\D/g, '').slice(0, 10) : value;
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: nextValue
     });
   };
 
@@ -47,6 +52,11 @@ export default function ShopkeeperRegister() {
 
     if (formData.password.length < 6) {
       setError('Password must be at least 6 characters long');
+      return;
+    }
+
+    if (formData.phone.length !== 10) {
+      setError('Please enter a valid 10 digit phone number');
       return;
     }
 
@@ -81,12 +91,14 @@ export default function ShopkeeperRegister() {
   ];
 
   return (
-    <div className={styles.container}>
-      <div className={styles.formWrapper}>
+    <>
+      <Header />
+      <div className={styles.container}>
+        <div className={styles.formWrapper}>
         <div className={styles.header}>
           <div className={styles.icon}>🏪</div>
-          <h1 className={styles.title}>Register Shop</h1>
-          <p className={styles.subtitle}>Share your agricultural shop stock with farmers</p>
+          <h1 className={styles.title}>Register Your Shop</h1>
+          <p className={styles.subtitle}>Connect with thousands of farmers and grow your business</p>
         </div>
 
         <form onSubmit={handleSubmit} className={styles.form}>
@@ -102,8 +114,9 @@ export default function ShopkeeperRegister() {
               name="shopName"
               value={formData.shopName}
               onChange={handleChange}
-              placeholder="e.g. - Raj Agri Store"
+              placeholder="e.g., Raj Krishi Kendra"
               className={styles.input}
+              required
             />
           </div>
 
@@ -117,8 +130,9 @@ export default function ShopkeeperRegister() {
               name="ownerName"
               value={formData.ownerName}
               onChange={handleChange}
-              placeholder="Your name"
+              placeholder="Enter your full name"
               className={styles.input}
+              required
             />
           </div>
 
@@ -132,20 +146,27 @@ export default function ShopkeeperRegister() {
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              placeholder="10 digit number"
+              placeholder="10 digit mobile number"
               className={styles.input}
               maxLength={10}
+              pattern="[0-9]{10}"
+              required
             />
           </div>
 
           <div className={styles.twoColumn}>
             <div className={styles.formGroup}>
-              <label className={styles.label}>State</label>
+              <label className={styles.label}>
+                <MapPinned size={20} />
+                State
+              </label>
               <select
                 name="state"
                 value={formData.state}
                 onChange={handleChange}
                 className={styles.select}
+                required
+                aria-label="Select State"
               >
                 <option value="">-- Select State --</option>
                 {INDIAN_STATES.map(state => (
@@ -155,14 +176,17 @@ export default function ShopkeeperRegister() {
             </div>
 
             <div className={styles.formGroup}>
-              <label className={styles.label}>District</label>
+              <label className={styles.label}>
+                District
+              </label>
               <input
                 type="text"
                 name="district"
                 value={formData.district}
                 onChange={handleChange}
-                placeholder="District name"
+                placeholder="Your district"
                 className={styles.input}
+                required
               />
             </div>
           </div>
@@ -177,21 +201,26 @@ export default function ShopkeeperRegister() {
               name="location"
               value={formData.location}
               onChange={handleChange}
-              placeholder="Market name, street name, etc."
+              placeholder="Complete shop address with landmarks"
               className={styles.input}
+              required
             />
           </div>
 
           <div className={styles.formGroup}>
-            <label className={styles.label}>Password</label>
+            <label className={styles.label}>
+              <Lock size={20} />
+              Password
+            </label>
             <div className={styles.passwordWrapper}>
               <input
                 type={showPassword ? 'text' : 'password'}
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                placeholder="Choose strong password"
+                placeholder="Create a strong password (min 6 chars)"
                 className={styles.input}
+                required
               />
               <button
                 type="button"
@@ -204,15 +233,19 @@ export default function ShopkeeperRegister() {
           </div>
 
           <div className={styles.formGroup}>
-            <label className={styles.label}>Confirm Password</label>
+            <label className={styles.label}>
+              <CheckCircle2 size={20} />
+              Confirm Password
+            </label>
             <div className={styles.passwordWrapper}>
               <input
                 type={showConfirmPassword ? 'text' : 'password'}
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                placeholder="Enter password again"
+                placeholder="Re-enter your password"
                 className={styles.input}
+                required
               />
               <button
                 type="button"
@@ -229,7 +262,14 @@ export default function ShopkeeperRegister() {
             disabled={isLoading}
             className={styles.button}
           >
-            {isLoading ? 'Registration in progress...' : 'Register Shop'}
+            {isLoading ? (
+              <>
+                <span className={styles.spinner}></span>
+                Registering your shop...
+              </>
+            ) : (
+              'Register Shop'
+            )}
           </button>
 
           <div className={styles.divider}>or</div>
@@ -240,16 +280,17 @@ export default function ShopkeeperRegister() {
         </form>
 
         <div className={styles.benefits}>
-          <h3 className={styles.benefitsTitle}>Benefits of Registering Shop:</h3>
+          <h3 className={styles.benefitsTitle}>🎯 Benefits of Joining</h3>
           <ul className={styles.benefitsList}>
-            <li>✅ Reach millions of farmers</li>
-            <li>✅ Advertise your stock</li>
-            <li>✅ Receive direct orders</li>
-            <li>✅ Track sales</li>
-            <li>✅ Completely free</li>
+            <li>✨ Reach thousands of farmers across India</li>
+            <li>📢 Showcase your products & inventory</li>
+            <li>📦 Receive direct orders from farmers</li>
+            <li>📊 Track sales and business analytics</li>
+            <li>🆓 100% free forever - No hidden charges</li>
           </ul>
         </div>
       </div>
     </div>
+    </>
   );
 }

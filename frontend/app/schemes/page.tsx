@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Header from '../../components/Header';
 import styles from './Schemes.module.css';
 
 interface Scheme {
@@ -132,6 +133,7 @@ const Schemes = () => {
 
   return (
     <div className={styles.container}>
+      <Header />
       {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>

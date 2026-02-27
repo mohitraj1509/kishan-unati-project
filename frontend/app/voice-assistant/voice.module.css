@@ -6,6 +6,12 @@
   flex-direction: column;
 }
 
+@media (max-width: 640px) {
+  .container {
+    padding: 20px 12px 12px;
+  }
+}
+
 .header {
   max-width: 800px;
   margin: 0 auto 30px;
@@ -20,6 +26,18 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin: 0 0 10px;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: 1.6rem;
+  }
 }
 
 .subtitle {
@@ -39,6 +57,21 @@
   flex-direction: column;
   height: 600px;
   overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .chatContainer {
+    height: 500px;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .chatContainer {
+    height: 60vh;
+    max-height: 450px;
+    border-radius: 12px;
+  }
 }
 
 .messages {

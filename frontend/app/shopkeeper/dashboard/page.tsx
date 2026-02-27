@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import { Plus, Edit2, Trash2, Search, Package, Percent, Calendar, TrendingUp, AlertCircle, ShoppingBag, BarChart3, Upload, Image, Video, X } from 'lucide-react';
+import Header from '../../../components/Header';
 import styles from './dashboard.module.css';
 
 interface StockItem {
@@ -231,6 +232,7 @@ export default function ShopkeeperDashboard() {
 
   return (
     <div className={styles.dashboard}>
+      <Header />
       <div className={styles.header}>
         <div className={styles.headerContent}>
           <h1 className={styles.title}>📦 Stock Management Dashboard</h1>

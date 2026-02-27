@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 import { AlertCircle, Upload, CheckCircle, X } from 'lucide-react';
+import Header from '../../components/Header';
 import styles from './disease.module.css';
 
 interface DiseaseResult {
@@ -84,6 +85,7 @@ export default function DiseaseDetection() {
 
   return (
     <div className={styles.container}>
+      <Header />
       <div className={styles.header}>
         <h1 className={styles.title}>🔍 रोग पहचान</h1>
         <p className={styles.subtitle}>अपनी फसल की तस्वीर अपलोड करें और रोग की पहचान करें</p>

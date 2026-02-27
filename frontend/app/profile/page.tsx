@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { User, Mail, Phone, MapPin, Calendar, Edit2, Save, X, Camera, Lock, Trash2 } from 'lucide-react';
 import { getProfile, updateProfile } from '../../lib/api';
+import Header from '../../components/Header';
 import styles from './profile.module.css';
 
 interface UserProfile {

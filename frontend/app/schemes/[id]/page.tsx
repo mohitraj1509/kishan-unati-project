@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Header from '../../../components/Header';
 import styles from './SchemeDetail.module.css';
 
 interface Scheme {
@@ -161,6 +162,7 @@ const SchemeDetail = () => {
 
   return (
     <div className={styles.container}>
+      <Header />
       {/* Header */}
       <div className={styles.header}>
         <div className={styles.breadcrumb}>

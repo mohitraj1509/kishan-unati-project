@@ -4,11 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header';
 import Dashboard from '../components/Dashboard';
-import Features from '../components/Features';
 import NearestShops from '../components/NearestShops';
-import FarmingTips from '../components/FarmingTips';
 import Testimonials from '../components/Testimonials';
-import Statistics from '../components/Statistics';
 import Footer from '../components/Footer';
 import ChatbotFAB from '../components/ChatbotFAB';
 import { isAuthenticated } from '../lib/auth';
@@ -44,23 +41,23 @@ export default function Home() {
 
   return (
     <div>
+      {/* 1. Navbar */}
       <Header />
+      
       {isLoggedIn ? (
         <>
           <Dashboard />
-          <Features />
           <NearestShops />
-          <FarmingTips />
           <Testimonials />
-          <Statistics />
         </>
       ) : (
         <>
-          {/* Modern Hero Section */}
+          {/* 2. Hero Section - Two Containers */}
           <section className={styles.hero}>
             <div className={styles.heroBackground}></div>
             
             <div className={styles.heroContent}>
+              {/* Container 1: Details */}
               <div className={styles.heroText}>
                 <h1 className={styles.heroTitle}>
                   🌾 किसान उन्नति
@@ -70,21 +67,21 @@ export default function Home() {
                 </p>
                 
                 <p className={styles.heroDescription}>
-                  AI-Powered खेती की सलाह, रोग पहचान, लाइव मंडी भाव — हिंदी में, बिना खाता बनाए
+                  AI-Powered खेती की सलाह, रोग पहचान और लाइव मंडी भाव — सब कुछ एक जगह।
                 </p>
 
-                <div className={styles.heroStats}>
-                  <div className={styles.statItem}>
-                    <div className={styles.statNumber}>50M+</div>
-                    <div className={styles.statLabel}>किसान</div>
+                <div className={styles.heroFeatures}>
+                  <div className={styles.featureItem}>
+                    <span className={styles.featureIcon}>✓</span>
+                    <span>तुरंत AI सलाह</span>
                   </div>
-                  <div className={styles.statItem}>
-                    <div className={styles.statNumber}>95%</div>
-                    <div className={styles.statLabel}>सटीक</div>
+                  <div className={styles.featureItem}>
+                    <span className={styles.featureIcon}>✓</span>
+                    <span>रोग पहचान</span>
                   </div>
-                  <div className={styles.statItem}>
-                    <div className={styles.statNumber}>24/7</div>
-                    <div className={styles.statLabel}>सहायता</div>
+                  <div className={styles.featureItem}>
+                    <span className={styles.featureIcon}>✓</span>
+                    <span>लाइव मंडी भाव</span>
                   </div>
                 </div>
 
@@ -93,64 +90,43 @@ export default function Home() {
                     <span className={styles.btnIcon}>🎤</span>
                     बोलकर पूछें
                   </Link>
-                  <Link href="/crop-recommendation" className={styles.secondaryBtn}>
-                    <span className={styles.btnIcon}>🌾</span>
-                    फसल सुझाव
-                  </Link>
-                  <Link href="/register" className={styles.tertiaryBtn}>
+                  <Link href="/register" className={styles.secondaryBtn}>
                     <span className={styles.btnIcon}>👤</span>
-                    खाता बनाएं
+                    शुरू करें
                   </Link>
-                </div>
-
-                <div className={styles.heroTrust}>
-                  <span className={styles.trustIcon}>✓</span>
-                  <span className={styles.trustText}>बिना लॉगिन के सभी सेवाएँ शुरू करें</span>
                 </div>
               </div>
 
+              {/* Container 2: Demo Video */}
               <div className={styles.heroVisual}>
-                <div className={styles.animatedCard}>
-                  <div className={styles.cardTop}>
-                    <div className={styles.cardIcon}>🤖</div>
-                    <div className={styles.cardLabel}>AI Farming Guide</div>
-                  </div>
-                  <div className={styles.cardFeatures}>
-                    <div className={styles.feature}>✓ तुरंत सलाह</div>
-                    <div className={styles.feature}>✓ रोग पहचान</div>
-                    <div className={styles.feature}>✓ मंडी भाव</div>
-                  </div>
-                </div>
-
-                <div className={styles.floatingElements}>
-                  <div className={`${styles.floatingBox} ${styles.delay0}`}>
-                    <span className={styles.floatingIcon}>🌾</span>
-                    <span>फसल सलाह</span>
-                  </div>
-                  <div className={`${styles.floatingBox} ${styles.delay1}`}>
-                    <span className={styles.floatingIcon}>📊</span>
-                    <span>मंडी भाव</span>
-                  </div>
-                  <div className={`${styles.floatingBox} ${styles.delay2}`}>
-                    <span className={styles.floatingIcon}>🔍</span>
-                    <span>रोग पहचान</span>
-                  </div>
-                  <div className={`${styles.floatingBox} ${styles.delay3}`}>
-                    <span className={styles.floatingIcon}>🎤</span>
-                    <span>बोलकर पूछें</span>
+                <div className={styles.videoContainer}>
+                  <div className={styles.videoWrapper}>
+                    <div className={styles.videoPlaceholder}>
+                      <div className={styles.playButton}>
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                          <circle cx="30" cy="30" r="30" fill="rgba(16, 185, 129, 0.9)" />
+                          <path d="M24 18L42 30L24 42V18Z" fill="white" />
+                        </svg>
+                      </div>
+                      <div className={styles.videoOverlay}>
+                        <p className={styles.videoTitle}>देखें कैसे काम करता है</p>
+                        <p className={styles.videoSubtitle}>2 मिनट का डेमो</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Features Grid Section */}
-          <section className={styles.featuresSection}>
+          {/* 3. All Services Section */}
+          <section className={styles.servicesSection}>
             <div className={styles.sectionHeader}>
-              <h2 className={styles.sectionTitle}>✨ हमारी शक्तिशाली सेवाएँ</h2>
-              <p className={styles.sectionSubtitle}>सभी farmers के लिए designed, सभी के लिए free</p>
+              <h2 className={styles.sectionTitle}>✨ हमारी सभी सेवाएँ</h2>
+              <p className={styles.sectionSubtitle}>
+                किसानों के लिए विशेष रूप से डिज़ाइन की गई, पूर्णतः निःशुल्क
+              </p>
             </div>
-
             <div className={styles.servicesGrid}>
               <Link href="/crop-recommendation" className={styles.serviceCard}>
                 <div className={styles.serviceIcon}>🤖</div>
@@ -187,137 +163,141 @@ export default function Home() {
                 <div className={styles.serviceArrow}>→</div>
               </Link>
 
-              <div className={`${styles.serviceCard} ${styles.communityCard}`}>
-                <div className={styles.serviceIcon}>👥</div>
-                <h3 className={styles.serviceTitle}>कम्युनिटी</h3>
-                <p className={styles.serviceDesc}>दूसरे किसानों से सीखें और जुड़ें</p>
+              <Link href="/marketplace" className={`${styles.serviceCard} ${styles.communityCard}`}>
+                <div className={styles.serviceIcon}>🛒</div>
+                <h3 className={styles.serviceTitle}>मार्केटप्लेस</h3>
+                <p className={styles.serviceDesc}>सीधे किसानों और खरीदारों को जोड़ें</p>
                 <div className={styles.serviceArrow}>→</div>
-              </div>
+              </Link>
             </div>
           </section>
 
-          {/* Stats Section */}
-          <section className={styles.statsSection}>
-            <div className={styles.statsContainer}>
-              <div className={styles.statBox}>
-                <div className={styles.statBigNumber}>2M+</div>
-                <div className={styles.statBoxTitle}>Active Farmers</div>
-              </div>
-              <div className={styles.statBox}>
-                <div className={styles.statBigNumber}>10M+</div>
-                <div className={styles.statBoxTitle}>सवालों के जवाब</div>
-              </div>
-              <div className={styles.statBox}>
-                <div className={styles.statBigNumber}>98%</div>
-                <div className={styles.statBoxTitle}>खुश किसान</div>
-              </div>
-              <div className={styles.statBox}>
-                <div className={styles.statBigNumber}>₹500Cr</div>
-                <div className={styles.statBoxTitle}>बचाई गई फसल</div>
-              </div>
-            </div>
-          </section>
-
-          {/* How it Works Section */}
-          <section className={styles.howItWorks}>
-            <h2 className={styles.sectionTitle}>कैसे काम करता है?</h2>
-            <div className={styles.stepsContainer}>
-              <div className={styles.step}>
-                <div className={styles.stepNumber}>1</div>
-                <div className={styles.stepContent}>
-                  <h4>अपनी समस्या बताएं</h4>
-                  <p>बोलकर या लिखकर अपनी खेती की समस्या बताएं</p>
-                </div>
-              </div>
-              <div className={styles.stepArrow}>→</div>
-              <div className={styles.step}>
-                <div className={styles.stepNumber}>2</div>
-                <div className={styles.stepContent}>
-                  <h4>AI विश्लेषण करता है</h4>
-                  <p>हमारा AI आपकी समस्या का विश्लेषण करता है</p>
-                </div>
-              </div>
-              <div className={styles.stepArrow}>→</div>
-              <div className={styles.step}>
-                <div className={styles.stepNumber}>3</div>
-                <div className={styles.stepContent}>
-                  <h4>तुरंत समाधान पाएं</h4>
-                  <p>मिनटों में सटीक और व्यावहारिक सलाह पाएं</p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Testimonials Carousel */}
-          <section className={styles.testimonials}>
-            <h2 className={styles.sectionTitle}>किसानों का अनुभव</h2>
-            <div className={styles.testimonialsGrid}>
-              <div className={styles.testimonialCard}>
-                <div className={styles.stars}>⭐⭐⭐⭐⭐</div>
-                <p className={styles.testimonialText}>"Kisan Unnati ने मेरी गेहूँ की फसल बचा दी। Disease identification बिल्कुल सही था।"</p>
-                <div className={styles.testimonialAuthor}>
-                  <div className={styles.authorAvatar}>आ</div>
-                  <div>
-                    <div className={styles.authorName}>आयुष शर्मा</div>
-                    <div className={styles.authorLocation}>पंजाब</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className={styles.testimonialCard}>
-                <div className={styles.stars}>⭐⭐⭐⭐⭐</div>
-                <p className={styles.testimonialText}>"मंडी भाव से मुझे सही समय पर बेचने का पता चल जाता है। कमाई 30% बढ़ गई।"</p>
-                <div className={styles.testimonialAuthor}>
-                  <div className={styles.authorAvatar}>रा</div>
-                  <div>
-                    <div className={styles.authorName}>राज मल्हारा</div>
-                    <div className={styles.authorLocation}>महाराष्ट्र</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className={styles.testimonialCard}>
-                <div className={styles.stars}>⭐⭐⭐⭐⭐</div>
-                <p className={styles.testimonialText}>"Voice feature बहुत अच्छी है। मेरे बुजुर्ग माता-पिता भी आसानी से use करते हैं।"</p>
-                <div className={styles.testimonialAuthor}>
-                  <div className={styles.authorAvatar}>वि</div>
-                  <div>
-                    <div className={styles.authorName}>विजय कुमार</div>
-                    <div className={styles.authorLocation}>उत्तर प्रदेश</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* CTA Section */}
-          <section className={styles.ctaSection}>
-            <div className={styles.ctaContent}>
-              <h2 className={styles.ctaTitle}>आज ही शुरू करें</h2>
-              <p className={styles.ctaSubtitle}>बिना खाता बनाए, बिना किसी खर्च के</p>
-              
-              <div className={styles.ctaButtons}>
-                <Link href="/voice-assistant" className={styles.ctaPrimaryBtn}>
-                  🎤 अभी शुरू करें
-                </Link>
-                <Link href="/register" className={styles.ctaSecondaryBtn}>
-                  खाता बनाएं
-                </Link>
-              </div>
-
-              <p className={styles.ctaInfo}>
-                ✓ Free forever • ✓ हिंदी में • ✓ 24/7 support
-              </p>
-            </div>
-          </section>
-
-          <Features />
+          {/* 4. Nearest Shops */}
           <NearestShops />
-          <FarmingTips />
-          <Testimonials />
-          <Statistics />
+
+          {/* 5. Testimonials - Kishan ka Anubav */}
+          <section className={styles.testimonialsSection}>
+            <Testimonials />
+          </section>
+
+          {/* 6. Social Media Handles - 3 Parallel Containers */}
+          <section className={styles.socialSection}>
+            <div className={styles.sectionHeader}>
+              <h2 className={styles.sectionTitle}>📱 हमसे जुड़ें</h2>
+              <p className={styles.sectionSubtitle}>सोशल मीडिया पर हमारे साथ रहें और नई जानकारी पाएं</p>
+            </div>
+
+            <div className={styles.socialGrid}>
+              {/* Facebook Post */}
+              <div className={styles.socialCard}>
+                <div className={styles.socialHeader}>
+                  <div className={styles.socialIcon}>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                  </div>
+                  <div className={styles.socialInfo}>
+                    <h3 className={styles.socialTitle}>किसान उन्नति</h3>
+                    <p className={styles.socialTime}>2 घंटे पहले</p>
+                  </div>
+                </div>
+                <div className={styles.socialPost}>
+                  <p className={styles.postContent}>
+                    🌾 इस रबी सीजन में गेहूं की नई किस्म HD-3086 से 20% ज्यादा उपज! 
+                    पंजाब के 500+ किसानों ने इस्तेमाल किया और शानदार परिणाम मिले। 
+                    जानें कैसे आप भी बढ़ा सकते हैं अपनी फसल की पैदावार।
+                  </p>
+                  <div className={styles.postImage}>🌾</div>
+                </div>
+                <div className={styles.socialStats}>
+                  <span>❤️ 1.2K</span>
+                  <span>💬 89</span>
+                  <span>🔄 234</span>
+                </div>
+                <a 
+                  href="https://facebook.com/kisanunnati" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={styles.socialLink}
+                >
+                  Facebook पर देखें →
+                </a>
+              </div>
+
+              {/* X (Twitter) Post */}
+              <div className={styles.socialCard}>
+                <div className={styles.socialHeader}>
+                  <div className={styles.socialIcon}>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                  </div>
+                  <div className={styles.socialInfo}>
+                    <h3 className={styles.socialTitle}>@KisanUnnati</h3>
+                    <p className={styles.socialTime}>5 घंटे पहले</p>
+                  </div>
+                </div>
+                <div className={styles.socialPost}>
+                  <p className={styles.postContent}>
+                    🚨 मौसम अलर्ट: अगले 3 दिन में उत्तर भारत के कई हिस्सों में बारिश की संभावना। 
+                    किसान भाइयों से निवेदन है कि फसल की कटाई को 4-5 दिन के लिए टाल दें। 
+                    #KisanUnnati #WeatherAlert #FarmingTips
+                  </p>
+                </div>
+                <div className={styles.socialStats}>
+                  <span>❤️ 892</span>
+                  <span>💬 45</span>
+                  <span>🔄 567</span>
+                </div>
+                <a 
+                  href="https://x.com/kisanunnati" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={styles.socialLink}
+                >
+                  X पर देखें →
+                </a>
+              </div>
+
+              {/* Blog Post */}
+              <div className={styles.socialCard}>
+                <div className={styles.socialHeader}>
+                  <div className={styles.socialIcon}>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg>
+                  </div>
+                  <div className={styles.socialInfo}>
+                    <h3 className={styles.socialTitle}>किसान ब्लॉग</h3>
+                    <p className={styles.socialTime}>1 दिन पहले</p>
+                  </div>
+                </div>
+                <div className={styles.socialPost}>
+                  <p className={styles.postContent}>
+                    📝 "ड्रिप इरिगेशन से कैसे बचाएं 60% पानी"
+                    <br /><br />
+                    आधुनिक खेती में ड्रिप इरिगेशन तकनीक से न सिर्फ पानी की बचत होती है, 
+                    बल्कि फसल की गुणवत्ता भी बेहतर होती है। पढ़ें पूरा लेख...
+                  </p>
+                </div>
+                <div className={styles.socialStats}>
+                  <span>👁️ 3.4K पाठक</span>
+                  <span>⭐ 4.8/5</span>
+                </div>
+                <a 
+                  href="/blog" 
+                  className={styles.socialLink}
+                >
+                  ब्लॉग पढ़ें →
+                </a>
+              </div>
+            </div>
+          </section>
         </>
       )}
+      
+      {/* 7. Footer */}
       <Footer />
       <ChatbotFAB />
     </div>

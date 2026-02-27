@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Mic, Send, Volume2, X } from 'lucide-react';
+import Header from '../../components/Header';
 import styles from './voice.module.css';
 
 export default function VoiceAssistant() {
@@ -97,6 +98,7 @@ export default function VoiceAssistant() {
 
   return (
     <div className={styles.container}>
+      <Header />
       <div className={styles.header}>
         <h1 className={styles.title}>🎤 वॉइस सहायक</h1>
         <p className={styles.subtitle}>आवाज़ में अपना सवाल पूछें और तुरंत जवाब पाएं</p>

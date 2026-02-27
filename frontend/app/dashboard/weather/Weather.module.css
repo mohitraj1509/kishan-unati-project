@@ -35,6 +35,18 @@
   letter-spacing: -0.02em;
 }
 
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: 1.6rem;
+  }
+}
+
 .subtitle {
   font-size: 1.1rem;
   color: #64748b;
@@ -52,6 +64,12 @@
   flex-wrap: wrap;
 }
 
+@media (max-width: 640px) {
+  .locationSelector {
+    gap: 10px;
+  }
+}
+
 .locationInput {
   padding: 12px 16px;
   border: 2px solid #e5e7eb;
@@ -61,6 +79,21 @@
   min-width: 300px;
   transition: all 0.3s ease;
   color: #22c55e;
+}
+
+@media (max-width: 768px) {
+  .locationInput {
+    min-width: 250px;
+    padding: 10px 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .locationInput {
+    min-width: 100%;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+  }
 }
 
 .locationInput:focus {

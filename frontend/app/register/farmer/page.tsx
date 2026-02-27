@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { User, Mail, Phone, MapPin, Lock, Eye, EyeOff, CheckCircle2 } from 'lucide-react';
+import Header from '../../../components/Header';
 import styles from '../Register.module.css';
 
 export default function FarmerRegister() {
@@ -18,12 +20,18 @@ export default function FarmerRegister() {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    const nextValue =
+      name === 'phone' ? value.replace(/\D/g, '').slice(0, 10) : value;
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: nextValue
     });
   };
 
@@ -42,6 +50,12 @@ export default function FarmerRegister() {
     // Validate password strength
     if (formData.password.length < 6) {
       setError('Password must be at least 6 characters long');
+      setLoading(false);
+      return;
+    }
+
+    if (formData.phone.length !== 10) {
+      setError('Please enter a valid 10 digit phone number');
       setLoading(false);
       return;
     }
@@ -84,18 +98,24 @@ export default function FarmerRegister() {
   ];
 
   return (
-    <div className={styles.container}>
-      <div className={styles.formCard}>
+    <>
+      <Header />
+      <div className={styles.container}>
+        <div className={styles.formCard}>
         <div className={styles.header}>
-          <h1 className={styles.title}>👨‍🌾 Create Farmer Account</h1>
-          <p className={styles.subtitle}>Start your farming journey</p>
+          <div className={styles.iconWrapper}>🌾</div>
+          <h1 className={styles.title}>Create Farmer Account</h1>
+          <p className={styles.subtitle}>Join thousands of farmers growing smarter</p>
         </div>
 
         <form onSubmit={handleSubmit} className={styles.form}>
           {error && <div className={styles.error}>{error}</div>}
 
           <div className={styles.inputGroup}>
-            <label htmlFor="name" className={styles.label}>Your Name</label>
+            <label htmlFor="name" className={styles.label}>
+              <User size={18} />
+              Full Name
+            </label>
             <input
               type="text"
               id="name"
@@ -110,7 +130,10 @@ export default function FarmerRegister() {
 
           <div className={styles.row}>
             <div className={styles.inputGroup}>
-              <label htmlFor="email" className={styles.label}>Email</label>
+              <label htmlFor="email" className={styles.label}>
+                <Mail size={18} />
+                Email Address
+              </label>
               <input
                 type="email"
                 id="email"
@@ -118,13 +141,16 @@ export default function FarmerRegister() {
                 value={formData.email}
                 onChange={handleChange}
                 className={styles.input}
-                placeholder="Your email"
+                placeholder="your.email@example.com"
                 required
               />
             </div>
 
             <div className={styles.inputGroup}>
-              <label htmlFor="phone" className={styles.label}>Phone Number</label>
+              <label htmlFor="phone" className={styles.label}>
+                <Phone size={18} />
+                Phone Number
+              </label>
               <input
                 type="tel"
                 id="phone"
@@ -132,8 +158,9 @@ export default function FarmerRegister() {
                 value={formData.phone}
                 onChange={handleChange}
                 className={styles.input}
-                placeholder="10 digit number"
+                placeholder="10 digit mobile number"
                 maxLength={10}
+                pattern="[0-9]{10}"
                 required
               />
             </div>
@@ -141,37 +168,64 @@ export default function FarmerRegister() {
 
           <div className={styles.row}>
             <div className={styles.inputGroup}>
-              <label htmlFor="password" className={styles.label}>Password</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                className={styles.input}
-                placeholder="Create strong password"
-                required
-              />
+              <label htmlFor="password" className={styles.label}>
+                <Lock size={18} />
+                Password
+              </label>
+              <div className={styles.passwordWrapper}>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  className={styles.input}
+                  placeholder="Create strong password"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className={styles.togglePassword}
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
             </div>
 
             <div className={styles.inputGroup}>
-              <label htmlFor="confirmPassword" className={styles.label}>Confirm Password</label>
-              <input
-                type="password"
-                id="confirmPassword"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                className={styles.input}
-                placeholder="Enter password again"
-                required
-              />
+              <label htmlFor="confirmPassword" className={styles.label}>
+                <CheckCircle2 size={18} />
+                Confirm Password
+              </label>
+              <div className={styles.passwordWrapper}>
+                <input
+                  type={showConfirmPassword ? 'text' : 'password'}
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  className={styles.input}
+                  placeholder="Re-enter your password"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className={styles.togglePassword}
+                >
+                  {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
             </div>
           </div>
 
           <div className={styles.row}>
             <div className={styles.inputGroup}>
-              <label htmlFor="state" className={styles.label}>State</label>
+              <label htmlFor="state" className={styles.label}>
+                <MapPin size={18} />
+                State
+              </label>
               <select
                 id="state"
                 name="state"
@@ -188,7 +242,9 @@ export default function FarmerRegister() {
             </div>
 
             <div className={styles.inputGroup}>
-              <label htmlFor="district" className={styles.label}>District</label>
+              <label htmlFor="district" className={styles.label}>
+                District
+              </label>
               <input
                 type="text"
                 id="district"
@@ -203,7 +259,9 @@ export default function FarmerRegister() {
           </div>
 
           <div className={styles.inputGroup}>
-            <label htmlFor="location" className={styles.label}>Village / City</label>
+            <label htmlFor="location" className={styles.label}>
+              Village / City
+            </label>
             <input
               type="text"
               id="location"
@@ -211,7 +269,7 @@ export default function FarmerRegister() {
               value={formData.location}
               onChange={handleChange}
               className={styles.input}
-              placeholder="Your village or city"
+              placeholder="Enter your village or city name"
               required
             />
           </div>
@@ -221,7 +279,14 @@ export default function FarmerRegister() {
             className={styles.submitBtn}
             disabled={loading}
           >
-            {loading ? 'Registration in progress...' : 'Create Account'}
+            {loading ? (
+              <>
+                <span className={styles.spinner}></span>
+                Creating your account...
+              </>
+            ) : (
+              'Create Account'
+            )}
           </button>
         </form>
 
@@ -235,5 +300,6 @@ export default function FarmerRegister() {
         </div>
       </div>
     </div>
+    </>
   );
 }

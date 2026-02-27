@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { isAuthenticated } from '../lib/auth';
 
 interface UserPreferences {
   language: string;
@@ -28,33 +29,50 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
   const [userPreferences, setUserPreferences] = useState<UserPreferences | null>(null);
 
   useEffect(() => {
-    // Check if user has completed onboarding
-    const onboarded = localStorage.getItem('userOnboarded');
     const preferences = localStorage.getItem('userPreferences');
-
-    if (!onboarded) {
-      setShowOnboarding(true);
-      setIsOnboarded(false);
-    } else {
-      setIsOnboarded(true);
-      if (preferences) {
-        setUserPreferences(JSON.parse(preferences));
-      }
+    if (preferences) {
+      setUserPreferences(JSON.parse(preferences));
     }
+
+    const syncAuthState = () => {
+      const isAuth = isAuthenticated();
+      setShowOnboarding(!isAuth);
+      setIsOnboarded(isAuth);
+    };
+
+    syncAuthState();
+
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'token') {
+        syncAuthState();
+      }
+    };
+
+    const handleAuthChange = () => {
+      syncAuthState();
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('auth-change', handleAuthChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('auth-change', handleAuthChange);
+    };
   }, []);
 
   const completeOnboarding = (data: UserPreferences) => {
     setUserPreferences(data);
-    setIsOnboarded(true);
+    const isAuth = isAuthenticated();
+    setIsOnboarded(isAuth);
     setShowOnboarding(false);
-    localStorage.setItem('userOnboarded', 'true');
     localStorage.setItem('userPreferences', JSON.stringify(data));
   };
 
   const skipOnboarding = () => {
-    setIsOnboarded(true);
+    const isAuth = isAuthenticated();
+    setIsOnboarded(isAuth);
     setShowOnboarding(false);
-    localStorage.setItem('userOnboarded', 'true');
   };
 
   return (

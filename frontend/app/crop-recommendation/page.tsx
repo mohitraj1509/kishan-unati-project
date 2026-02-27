@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Leaf, ArrowRight, CheckCircle } from 'lucide-react';
+import Header from '../../components/Header';
 import styles from './crops.module.css';
 
 interface CropSuggestion {
@@ -128,6 +129,7 @@ export default function CropRecommendation() {
 
   return (
     <div className={styles.container}>
+      <Header />
       <div className={styles.header}>
         <h1 className={styles.title}>🌾 फसल सुझाव</h1>
         <p className={styles.subtitle}>अपनी जमीन के अनुसार सही फसल चुनें</p>
