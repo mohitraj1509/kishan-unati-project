@@ -254,6 +254,133 @@ class AIService {
       throw new Error('Failed to predict market prices');
     }
   }
+
+  async getPricePrediction(crop, district, arrivalQuantity = 1000) {
+    try {
+      // Call Python AI service
+      const axios = require('axios');
+      const aiServiceUrl = process.env.AI_SERVICE_URL || 'http://localhost:5000';
+
+      try {
+        const response = await axios.get(`${aiServiceUrl}/api/predict-price`, {
+          params: { crop, district, arrival_quantity: arrivalQuantity },
+          timeout: 10000
+        });
+        return response.data;
+      } catch (aiError) {
+        // Fallback to mock data if AI service is unavailable
+        logger.warn(`AI service unavailable, using mock data for crop: ${crop}`);
+        return {
+          predicted_price: this._generateMockPrice(crop),
+          risk_level: this._generateMockRisk(),
+          confidence: 0.75,
+          historical_avg: this._generateMockHistoricalPrice(crop),
+          forecast_range: {
+            min: this._generateMockPrice(crop) - 500,
+            max: this._generateMockPrice(crop) + 500
+          },
+          note: 'This is mock data. Real data will be available when AI service is connected.'
+        };
+      }
+    } catch (error) {
+      logger.error('Get price prediction error:', error.message);
+      throw new Error('Failed to get price prediction');
+    }
+  }
+
+  async getPriceHistory(crop, district, months = 12) {
+    try {
+      const axios = require('axios');
+      const aiServiceUrl = process.env.AI_SERVICE_URL || 'http://localhost:5000';
+
+      try {
+        const response = await axios.get(`${aiServiceUrl}/api/price-history`, {
+          params: { crop, district, months },
+          timeout: 10000
+        });
+        return response.data;
+      } catch (aiError) {
+        // Fallback to mock data
+        logger.warn(`AI service unavailable, using mock history data for crop: ${crop}`);
+        return this._generateMockPriceHistory(months);
+      }
+    } catch (error) {
+      logger.error('Get price history error:', error.message);
+      throw new Error('Failed to get price history');
+    }
+  }
+
+  async getRiskAssessment(crop, district) {
+    try {
+      const axios = require('axios');
+      const aiServiceUrl = process.env.AI_SERVICE_URL || 'http://localhost:5000';
+
+      try {
+        const response = await axios.get(`${aiServiceUrl}/api/risk-assessment`, {
+          params: { crop, district },
+          timeout: 10000
+        });
+        return response.data;
+      } catch (aiError) {
+        // Fallback to mock data
+        logger.warn(`AI service unavailable, using mock risk data for crop: ${crop}`);
+        return {
+          risk_level: this._generateMockRisk(),
+          factors: [
+            'Market volatility: 25%',
+            'Supply variation: 18%',
+            'Seasonal demand: 12%'
+          ]
+        };
+      }
+    } catch (error) {
+      logger.error('Get risk assessment error:', error.message);
+      throw new Error('Failed to get risk assessment');
+    }
+  }
+
+  // Helper methods for mock data
+  _generateMockPrice(crop) {
+    const basePrices = {
+      wheat: 2400,
+      rice: 2200,
+      corn: 1800,
+      cotton: 5500,
+      sugarcane: 3200,
+      pulses: 4500,
+      oilseeds: 4200,
+      potato: 1200
+    };
+    
+    const basePrice = basePrices[crop.toLowerCase()] || 2500;
+    const variation = (Math.random() - 0.5) * 500;
+    return Math.round(basePrice + variation);
+  }
+
+  _generateMockHistoricalPrice(crop) {
+    return Math.round(this._generateMockPrice(crop) * (0.85 + Math.random() * 0.15));
+  }
+
+  _generateMockRisk() {
+    const risks = ['Low', 'Medium', 'High'];
+    return risks[Math.floor(Math.random() * risks.length)];
+  }
+
+  _generateMockPriceHistory(months) {
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const history = [];
+
+    for (let i = Math.max(0, months - 12); i < months; i++) {
+      const monthIndex = i % 12;
+      history.push({
+        month: monthNames[monthIndex],
+        price: 2000 + Math.random() * 500
+      });
+    }
+
+    return history;
+  }
+
 }
 
 module.exports = new AIService();

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { getProfile, updateProfile } from '../../lib/api';
 import Header from '../../components/Header';
+import PricePredictionModal from '../../components/PricePredictionModal';
 import styles from './Dashboard.module.css';
 
 interface Notification {
@@ -46,6 +47,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('overview');
   const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [showPriceModal, setShowPriceModal] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -100,10 +102,11 @@ const Dashboard = () => {
   const quickActions = [
     { title: 'Crop Recommendation', icon: '🤖', color: '#22c55e', action: () => router.push('/dashboard/crop-recommendation') },
     { title: 'Disease Detection', icon: '🔍', color: '#ef4444', action: () => router.push('/dashboard/disease-detection') },
+    { title: 'Price Prediction', icon: '📈', color: '#f59e0b', action: () => setShowPriceModal(true) },
     { title: 'Weather Insights', icon: '🌤️', color: '#3b82f6', action: () => router.push('/dashboard/weather') },
-    { title: 'Marketplace', icon: '💰', color: '#f59e0b', action: () => router.push('/dashboard/marketplace') },
+    { title: 'Marketplace', icon: '💰', color: '#22c55e', action: () => router.push('/dashboard/marketplace') },
     { title: 'Government Schemes', icon: '📋', color: '#8b5cf6', action: () => router.push('/dashboard/schemes') },
-    { title: 'Farm Analytics', icon: '📈', color: '#06b6d4', action: () => router.push('/dashboard/analytics') },
+    { title: 'Farm Analytics', icon: '📊', color: '#06b6d4', action: () => router.push('/dashboard/analytics') },
     { title: 'Voice Assistant', icon: '🎤', color: '#ec4899', action: () => router.push('/dashboard/voice-assistant') },
     { title: 'Community', icon: '👥', color: '#84cc16', action: () => router.push('/dashboard/community') }
   ];
@@ -819,6 +822,13 @@ const Dashboard = () => {
         {activeTab === 'profile' && <ProfileSection user={user} />}
       </main>
       </div>
+
+      {/* Price Prediction Modal */}
+      <PricePredictionModal 
+        isOpen={showPriceModal} 
+        onClose={() => setShowPriceModal(false)}
+        userDistrict={user?.location?.district}
+      />
     </>
   );
 };

@@ -1,0 +1,144 @@
+.indicator {
+  padding: 12px;
+}
+
+.indicator.small {
+  padding: 8px;
+}
+
+.indicator.medium {
+  padding: 12px;
+}
+
+.indicator.large {
+  padding: 16px;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 10px;
+  border: 2px solid;
+  transition: all 0.3s ease;
+}
+
+.indicator.small .badge {
+  padding: 8px 12px;
+  gap: 8px;
+}
+
+.indicator.large .badge {
+  padding: 20px;
+  gap: 16px;
+}
+
+.badge:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.indicator.small .icon {
+  font-size: 18px;
+}
+
+.indicator.large .icon {
+  font-size: 32px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+}
+
+.value {
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.indicator.small .value {
+  font-size: 14px;
+}
+
+.indicator.large .value {
+  font-size: 22px;
+}
+
+.factors {
+  margin-top: 16px;
+  padding: 12px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border-left: 3px solid;
+  border-color: inherit;
+}
+
+.indicator.small .factors {
+  margin-top: 8px;
+  padding: 8px;
+}
+
+.factorsTitle {
+  margin: 0 0 8px 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1f2937;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.factorsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.factorItem {
+  font-size: 13px;
+  color: #4b5563;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.factorIcon {
+  color: #9ca3af;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .indicator {
+    padding: 8px;
+  }
+
+  .badge {
+    flex-wrap: wrap;
+  }
+
+  .icon {
+    font-size: 20px;
+  }
+
+  .value {
+    font-size: 16px;
+  }
+}
